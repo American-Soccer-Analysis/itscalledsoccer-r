@@ -1,6 +1,6 @@
 Package: itscalledsoccer
 Title: American Soccer Analysis API Client
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     c(
         person(
@@ -18,8 +18,8 @@ Authors@R:
 Description: Provides a wrapper around the same API <https://app.americansocceranalysis.com/api/v1/__docs__/>
     that powers the American Soccer Analysis app.
 License: MIT + file LICENSE
-URL: https://github.com/American-Soccer-Analysis/itscalledsoccer/tree/main/R-package
-BugReports: https://github.com/American-Soccer-Analysis/itscalledsoccer/issues
+URL: https://github.com/American-Soccer-Analysis/itscalledsoccer-r
+BugReports: https://github.com/American-Soccer-Analysis/itscalledsoccer-r/issues
 Encoding: UTF-8
 Roxygen: list(markdown = FALSE)
 RoxygenNote: 7.1.1

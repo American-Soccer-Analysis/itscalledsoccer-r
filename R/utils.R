@@ -66,6 +66,11 @@
 
         error_message <- glue::glue("HTTP 400: {error_message}")
         stop(error_message)
+    } else if (r$status_code %in% c(404, 503)) {
+        error_message <- glue::glue(
+            "HTTP {r$status_code}: This resource is temporarily unavailable, or it has been removed. If you believe you are receiving this message in error, please reach out to the maintainer(s). Otherwise, please try again shortly."
+        )
+        stop(error_message)
     } else if (r$status_code != 200) {
         httr::stop_for_status(r)
     }

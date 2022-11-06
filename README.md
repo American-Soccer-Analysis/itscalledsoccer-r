@@ -2,13 +2,20 @@
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/itscalledsoccer)](https://CRAN.R-project.org/package=itscalledsoccer)
-[![R-CMD-check](https://github.com/American-Soccer-Analysis/itscalledsoccer/workflows/R-CMD-check/badge.svg)](https://github.com/American-Soccer-Analysis/itscalledsoccer/actions)
-[![Codecov test coverage](https://codecov.io/gh/American-Soccer-Analysis/itscalledsoccer/branch/main/graph/badge.svg?token=RUWMM7ZLQ2)](https://app.codecov.io/gh/American-Soccer-Analysis/itscalledsoccer?branch=main)
+[![R-CMD-check](https://github.com/American-Soccer-Analysis/itscalledsoccer-r/workflows/R-CMD-check/badge.svg)](https://github.com/American-Soccer-Analysis/itscalledsoccer-r/actions)
+[![Codecov test coverage](https://codecov.io/gh/American-Soccer-Analysis/itscalledsoccer-r/branch/main/graph/badge.svg?token=RUWMM7ZLQ2)](https://app.codecov.io/gh/American-Soccer-Analysis/itscalledsoccer-r?branch=main)
 <!-- badges: end -->
 
 ## Overview
 
-`itscalledsoccer` is a wrapper around the same API that powers the [American Soccer Analysis app](https://app.americansocceranalysis.com/). It enables R users to programmatically retrieve advanced analytics for their favorite [MLS](https://en.wikipedia.org/wiki/Major_League_Soccer), [NWSL](https://en.wikipedia.org/wiki/National_Women%27s_Soccer_League), and [USL](https://en.wikipedia.org/wiki/United_Soccer_League) players and teams.
+`itscalledsoccer` is a wrapper around the same API that powers the [American Soccer Analysis app](https://app.americansocceranalysis.com/). It enables R users to programmatically retrieve advanced analytics for their favorite players and teams, with coverage of the following competitions: 
+
+- Major League Soccer
+- National Women's Soccer League
+- USL Championship
+- USL League One
+- MLS NEXT Pro
+- North American Soccer League (defunct)
 
 ## Installation
 
@@ -17,7 +24,7 @@
 install.packages("itscalledsoccer")
 
 # Install development version from GitHub
-devtools::install_github("American-Soccer-Analysis/itscalledsoccer/R-package")
+devtools::install_github("American-Soccer-Analysis/itscalledsoccer-r")
 ```
 
 ## Getting Started
