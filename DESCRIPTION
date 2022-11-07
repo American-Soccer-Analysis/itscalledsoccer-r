@@ -39,7 +39,8 @@ Imports:
     rlang (>= 0.4.10),
     data.table (>= 1.13.0),
     crayon,
-    clisymbols
+    clisymbols,
+    methods
 Suggests: 
     covr,
     testthat (>= 3.0.0)
