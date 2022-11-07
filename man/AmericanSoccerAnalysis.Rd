@@ -37,30 +37,32 @@ Does not take any arguments to initialize.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{AmericanSoccerAnalysis$new()}}
-\item \href{#method-add_httr_configs}{\code{AmericanSoccerAnalysis$add_httr_configs()}}
-\item \href{#method-reset_httr_configs}{\code{AmericanSoccerAnalysis$reset_httr_configs()}}
-\item \href{#method-get_players}{\code{AmericanSoccerAnalysis$get_players()}}
-\item \href{#method-get_teams}{\code{AmericanSoccerAnalysis$get_teams()}}
-\item \href{#method-get_stadia}{\code{AmericanSoccerAnalysis$get_stadia()}}
-\item \href{#method-get_managers}{\code{AmericanSoccerAnalysis$get_managers()}}
-\item \href{#method-get_referees}{\code{AmericanSoccerAnalysis$get_referees()}}
-\item \href{#method-get_games}{\code{AmericanSoccerAnalysis$get_games()}}
-\item \href{#method-get_player_xgoals}{\code{AmericanSoccerAnalysis$get_player_xgoals()}}
-\item \href{#method-get_player_xpass}{\code{AmericanSoccerAnalysis$get_player_xpass()}}
-\item \href{#method-get_player_goals_added}{\code{AmericanSoccerAnalysis$get_player_goals_added()}}
-\item \href{#method-get_goalkeeper_xgoals}{\code{AmericanSoccerAnalysis$get_goalkeeper_xgoals()}}
-\item \href{#method-get_goalkeeper_goals_added}{\code{AmericanSoccerAnalysis$get_goalkeeper_goals_added()}}
-\item \href{#method-get_team_xgoals}{\code{AmericanSoccerAnalysis$get_team_xgoals()}}
-\item \href{#method-get_team_xpass}{\code{AmericanSoccerAnalysis$get_team_xpass()}}
-\item \href{#method-get_team_goals_added}{\code{AmericanSoccerAnalysis$get_team_goals_added()}}
-\item \href{#method-get_game_xgoals}{\code{AmericanSoccerAnalysis$get_game_xgoals()}}
-\item \href{#method-clone}{\code{AmericanSoccerAnalysis$clone()}}
+\item \href{#method-AmericanSoccerAnalysis-new}{\code{AmericanSoccerAnalysis$new()}}
+\item \href{#method-AmericanSoccerAnalysis-add_httr_configs}{\code{AmericanSoccerAnalysis$add_httr_configs()}}
+\item \href{#method-AmericanSoccerAnalysis-reset_httr_configs}{\code{AmericanSoccerAnalysis$reset_httr_configs()}}
+\item \href{#method-AmericanSoccerAnalysis-get_players}{\code{AmericanSoccerAnalysis$get_players()}}
+\item \href{#method-AmericanSoccerAnalysis-get_teams}{\code{AmericanSoccerAnalysis$get_teams()}}
+\item \href{#method-AmericanSoccerAnalysis-get_stadia}{\code{AmericanSoccerAnalysis$get_stadia()}}
+\item \href{#method-AmericanSoccerAnalysis-get_managers}{\code{AmericanSoccerAnalysis$get_managers()}}
+\item \href{#method-AmericanSoccerAnalysis-get_referees}{\code{AmericanSoccerAnalysis$get_referees()}}
+\item \href{#method-AmericanSoccerAnalysis-get_games}{\code{AmericanSoccerAnalysis$get_games()}}
+\item \href{#method-AmericanSoccerAnalysis-get_player_xgoals}{\code{AmericanSoccerAnalysis$get_player_xgoals()}}
+\item \href{#method-AmericanSoccerAnalysis-get_player_xpass}{\code{AmericanSoccerAnalysis$get_player_xpass()}}
+\item \href{#method-AmericanSoccerAnalysis-get_player_goals_added}{\code{AmericanSoccerAnalysis$get_player_goals_added()}}
+\item \href{#method-AmericanSoccerAnalysis-get_player_salaries}{\code{AmericanSoccerAnalysis$get_player_salaries()}}
+\item \href{#method-AmericanSoccerAnalysis-get_goalkeeper_xgoals}{\code{AmericanSoccerAnalysis$get_goalkeeper_xgoals()}}
+\item \href{#method-AmericanSoccerAnalysis-get_goalkeeper_goals_added}{\code{AmericanSoccerAnalysis$get_goalkeeper_goals_added()}}
+\item \href{#method-AmericanSoccerAnalysis-get_team_xgoals}{\code{AmericanSoccerAnalysis$get_team_xgoals()}}
+\item \href{#method-AmericanSoccerAnalysis-get_team_xpass}{\code{AmericanSoccerAnalysis$get_team_xpass()}}
+\item \href{#method-AmericanSoccerAnalysis-get_team_goals_added}{\code{AmericanSoccerAnalysis$get_team_goals_added()}}
+\item \href{#method-AmericanSoccerAnalysis-get_team_salaries}{\code{AmericanSoccerAnalysis$get_team_salaries()}}
+\item \href{#method-AmericanSoccerAnalysis-get_game_xgoals}{\code{AmericanSoccerAnalysis$get_game_xgoals()}}
+\item \href{#method-AmericanSoccerAnalysis-clone}{\code{AmericanSoccerAnalysis$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-new"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-new}{}}}
 \subsection{Method \code{new()}}{
 Creates a new \code{AmericanSoccerAnalysis} object.
 \subsection{Usage}{
@@ -79,8 +81,8 @@ A new \code{AmericanSoccerAnalysis} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_httr_configs"></a>}}
-\if{latex}{\out{\hypertarget{method-add_httr_configs}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-add_httr_configs"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-add_httr_configs}{}}}
 \subsection{Method \code{add_httr_configs()}}{
 Appends new \code{httr} configs to the existing class.
 \subsection{Usage}{
@@ -96,8 +98,8 @@ Appends new \code{httr} configs to the existing class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-reset_httr_configs"></a>}}
-\if{latex}{\out{\hypertarget{method-reset_httr_configs}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-reset_httr_configs"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-reset_httr_configs}{}}}
 \subsection{Method \code{reset_httr_configs()}}{
 Removes all \code{httr} configs from the existing class.
 \subsection{Usage}{
@@ -106,8 +108,8 @@ Removes all \code{httr} configs from the existing class.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_players"></a>}}
-\if{latex}{\out{\hypertarget{method-get_players}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_players"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_players}{}}}
 \subsection{Method \code{get_players()}}{
 Retrieves a data frame containing player names, IDs, and other metadata.
 \subsection{Usage}{
@@ -127,8 +129,8 @@ Retrieves a data frame containing player names, IDs, and other metadata.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_teams"></a>}}
-\if{latex}{\out{\hypertarget{method-get_teams}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_teams"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_teams}{}}}
 \subsection{Method \code{get_teams()}}{
 Retrieves a data frame containing team names, abbreviations, and IDs.
 \subsection{Usage}{
@@ -148,8 +150,8 @@ Retrieves a data frame containing team names, abbreviations, and IDs.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_stadia"></a>}}
-\if{latex}{\out{\hypertarget{method-get_stadia}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_stadia"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_stadia}{}}}
 \subsection{Method \code{get_stadia()}}{
 Retrieves a data frame containing stadium names, IDs, and other metadata.
 \subsection{Usage}{
@@ -169,8 +171,8 @@ Retrieves a data frame containing stadium names, IDs, and other metadata.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_managers"></a>}}
-\if{latex}{\out{\hypertarget{method-get_managers}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_managers"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_managers}{}}}
 \subsection{Method \code{get_managers()}}{
 Retrieves a data frame containing manager names and IDs.
 \subsection{Usage}{
@@ -190,8 +192,8 @@ Retrieves a data frame containing manager names and IDs.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_referees"></a>}}
-\if{latex}{\out{\hypertarget{method-get_referees}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_referees"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_referees}{}}}
 \subsection{Method \code{get_referees()}}{
 Retrieves a data frame containing referee names and IDs.
 \subsection{Usage}{
@@ -211,8 +213,8 @@ Retrieves a data frame containing referee names and IDs.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_games"></a>}}
-\if{latex}{\out{\hypertarget{method-get_games}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_games"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_games}{}}}
 \subsection{Method \code{get_games()}}{
 Retrieves a data frame containing game IDs, dates, opponents, scores, and other metadata.
 \subsection{Usage}{
@@ -245,8 +247,8 @@ Retrieves a data frame containing game IDs, dates, opponents, scores, and other 
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_player_xgoals"></a>}}
-\if{latex}{\out{\hypertarget{method-get_player_xgoals}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_player_xgoals"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_player_xgoals}{}}}
 \subsection{Method \code{get_player_xgoals()}}{
 Retrieves a data frame containing player xG data meeting the specified conditions.
 \subsection{Usage}{
@@ -282,8 +284,8 @@ Retrieves a data frame containing player xG data meeting the specified condition
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_player_xpass"></a>}}
-\if{latex}{\out{\hypertarget{method-get_player_xpass}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_player_xpass"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_player_xpass}{}}}
 \subsection{Method \code{get_player_xpass()}}{
 Retrieves a data frame containing player xPass data meeting the specified conditions.
 \subsection{Usage}{
@@ -318,8 +320,8 @@ Retrieves a data frame containing player xPass data meeting the specified condit
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_player_goals_added"></a>}}
-\if{latex}{\out{\hypertarget{method-get_player_goals_added}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_player_goals_added"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_player_goals_added}{}}}
 \subsection{Method \code{get_player_goals_added()}}{
 Retrieves a data frame containing player goals added (g+) data meeting the specified conditions.
 \subsection{Usage}{
@@ -354,8 +356,37 @@ Retrieves a data frame containing player goals added (g+) data meeting the speci
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_goalkeeper_xgoals"></a>}}
-\if{latex}{\out{\hypertarget{method-get_goalkeeper_xgoals}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_player_salaries"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_player_salaries}{}}}
+\subsection{Method \code{get_player_salaries()}}{
+Retrieves a data frame containing player salary data meeting the specified conditions.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{AmericanSoccerAnalysis$get_player_salaries(leagues, ...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{leagues}}{Leagues on which to filter. Currently, only MLS salary data is publicly available.}
+
+\item{\code{...}}{The following arguments will be parsed:
+\itemize{
+  \item \code{player_ids}: Player IDs on which to filter. Cannot be combined with \code{player_names}. Accepts a character vector of length >= 1.
+  \item \code{player_names}: Player names on which to filter. Partial matches are accepted. Cannot be combined with \code{player_ids}. Accepts a character vector of length >= 1.
+  \item \code{team_ids}: Team IDs on which to filter. Cannot be combined with \code{team_names}. Accepts a character vector of length >= 1.
+  \item \code{team_names}: Team names on which to filter. Partial matches and abbreviations are accepted. Cannot be combined with \code{team_ids}. Accepts a character vector of length >= 1.
+  \item \code{position}: Describes the general position, as reported by the players' association. Valid keywords include: 'GK', 'D', 'M', and 'F'. Accepts a character vector of length >= 1.
+  \item \code{season_name}: Name(s)/year(s) of seasons. Cannot be combined with a date range. See the \href{https://app.americansocceranalysis.com/api/v1/__docs__/}{API documentation} for possible values. Accepts a character vector of length >= 1.
+  \item \code{start_date}: Start of a date range. Must be a string in YYYY-MM-DD format. Cannot be combined with \code{season_name}.
+  \item \code{end_date}: End of a date range. Must be a string in YYYY-MM-DD format. Cannot be combined with \code{season_name}.
+}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_goalkeeper_xgoals"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_goalkeeper_xgoals}{}}}
 \subsection{Method \code{get_goalkeeper_xgoals()}}{
 Retrieves a data frame containing goalkeeper xG data meeting the specified conditions.
 \subsection{Usage}{
@@ -389,8 +420,8 @@ Retrieves a data frame containing goalkeeper xG data meeting the specified condi
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_goalkeeper_goals_added"></a>}}
-\if{latex}{\out{\hypertarget{method-get_goalkeeper_goals_added}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_goalkeeper_goals_added"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_goalkeeper_goals_added}{}}}
 \subsection{Method \code{get_goalkeeper_goals_added()}}{
 Retrieves a data frame containing goalkeeper goals added (g+) data meeting the specified conditions.
 \subsection{Usage}{
@@ -424,8 +455,8 @@ Retrieves a data frame containing goalkeeper goals added (g+) data meeting the s
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_team_xgoals"></a>}}
-\if{latex}{\out{\hypertarget{method-get_team_xgoals}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_team_xgoals"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_team_xgoals}{}}}
 \subsection{Method \code{get_team_xgoals()}}{
 Retrieves a data frame containing team xG data meeting the specified conditions.
 \subsection{Usage}{
@@ -458,8 +489,8 @@ Retrieves a data frame containing team xG data meeting the specified conditions.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_team_xpass"></a>}}
-\if{latex}{\out{\hypertarget{method-get_team_xpass}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_team_xpass"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_team_xpass}{}}}
 \subsection{Method \code{get_team_xpass()}}{
 Retrieves a data frame containing team xPass data meeting the specified conditions.
 \subsection{Usage}{
@@ -490,8 +521,8 @@ Retrieves a data frame containing team xPass data meeting the specified conditio
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_team_goals_added"></a>}}
-\if{latex}{\out{\hypertarget{method-get_team_goals_added}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_team_goals_added"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_team_goals_added}{}}}
 \subsection{Method \code{get_team_goals_added()}}{
 Retrieves a data frame containing team goals added (g+) data meeting the specified conditions.
 \subsection{Usage}{
@@ -519,8 +550,35 @@ Retrieves a data frame containing team goals added (g+) data meeting the specifi
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_game_xgoals"></a>}}
-\if{latex}{\out{\hypertarget{method-get_game_xgoals}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_team_salaries"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_team_salaries}{}}}
+\subsection{Method \code{get_team_salaries()}}{
+Retrieves a data frame containing team salary data meeting the specified conditions.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{AmericanSoccerAnalysis$get_team_salaries(leagues, ...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{leagues}}{Leagues on which to filter. Currently, only MLS salary data is publicly available.}
+
+\item{\code{...}}{The following arguments will be parsed:
+\itemize{
+  \item \code{team_ids}: Team IDs on which to filter. Cannot be combined with \code{team_names}. Accepts a character vector of length >= 1.
+  \item \code{team_names}: Team names on which to filter. Partial matches and abbreviations are accepted. Cannot be combined with \code{team_ids}. Accepts a character vector of length >= 1.
+  \item \code{season_name}: Name(s)/year(s) of seasons. Cannot be combined with a date range. See the \href{https://app.americansocceranalysis.com/api/v1/__docs__/}{API documentation} for possible values. Accepts a character vector of length >= 1.
+  \item \code{split_by_teams}: Logical indicator to group results by team. Results must be grouped by at least one of teams, positions, or seasons. Value is TRUE by default.
+  \item \code{split_by_seasons}: Logical indicator to group results by season. Results must be grouped by at least one of teams, positions, or seasons.
+  \item \code{split_by_positions}: Logical indicator to group results by positions. Results must be grouped by at least one of teams, positions, or seasons.
+}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-get_game_xgoals"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-get_game_xgoals}{}}}
 \subsection{Method \code{get_game_xgoals()}}{
 Retrieves a data frame containing game xG data meeting the specified conditions.
 \subsection{Usage}{
@@ -545,8 +603,8 @@ Retrieves a data frame containing game xG data meeting the specified conditions.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-AmericanSoccerAnalysis-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-AmericanSoccerAnalysis-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

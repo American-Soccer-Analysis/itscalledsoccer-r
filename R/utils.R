@@ -25,13 +25,13 @@
     }
 
     if (!missing(ids)) {
-        if (!is.null(ids) & (!is(ids, "character") | length(ids) < 1)) {
+        if (!is.null(ids) & (!methods::is(ids, "character") | length(ids) < 1)) {
             stop("IDs must be passed as a vector of characters with length >= 1.")
         }
     }
 
     if (!missing(names)) {
-        if (!is.null(names) & (!is(names, "character") | length(names) < 1)) {
+        if (!is.null(names) & (!methods::is(names, "character") | length(names) < 1)) {
             stop("Names must be passed as a vector of characters with length >= 1.")
         }
     }
