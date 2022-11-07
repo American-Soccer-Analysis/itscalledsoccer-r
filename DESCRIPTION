@@ -18,7 +18,8 @@ Authors@R:
 Description: Provides a wrapper around the same API <https://app.americansocceranalysis.com/api/v1/__docs__/>
     that powers the American Soccer Analysis app.
 License: MIT + file LICENSE
-URL: https://github.com/American-Soccer-Analysis/itscalledsoccer-r
+URL: https://github.com/American-Soccer-Analysis/itscalledsoccer-r,
+    https://american-soccer-analysis.github.io/itscalledsoccer-r/
 BugReports: https://github.com/American-Soccer-Analysis/itscalledsoccer-r/issues
 Encoding: UTF-8
 Roxygen: list(markdown = FALSE)
