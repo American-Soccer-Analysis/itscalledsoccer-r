@@ -35,6 +35,12 @@ Temporary Items
 *.icloud
 
 ### R ###
+# CRAN release files
+cran-comments.md
+CRAN-RELEASE
+CRAN-SUBMISSION
+revdep
+
 # History files
 .Rhistory
 .Rapp.history
