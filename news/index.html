@@ -46,17 +46,82 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.1" id="itscalledsoccer-021">itscalledsoccer 0.2.1<a class="anchor" aria-label="anchor" href="#itscalledsoccer-021"></a></h2><p class="text-muted">CRAN release: 2022-11-07</p>
-<p>Added more handling to address the CRAN policy:</p>
-<pre><code>Packages which use Internet resources should fail gracefully with an informative message
-if the resource is not available or has changed (and not give a check warning nor error).</code></pre>
+<div class="section level4">
+<h4 id="bug-fixes--0-2-1">Bug fixes 🐛<a class="anchor" aria-label="anchor" href="#bug-fixes--0-2-1"></a></h4>
+<ul><li>Added more handling to address the CRAN policy: “Packages which use Internet resources should fail gracefully with an informative message if the resource is not available or has changed (and not give a check warning nor error).”</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="itscalledsoccer-020">itscalledsoccer 0.2.0<a class="anchor" aria-label="anchor" href="#itscalledsoccer-020"></a></h2><p class="text-muted">CRAN release: 2022-04-14</p>
-<p>Added ability to query MLS Next Pro data.</p>
+<div class="section level4">
+<h4 id="whats-new--0-2-0">What’s new ✨<a class="anchor" aria-label="anchor" href="#whats-new--0-2-0"></a></h4>
+<ul><li>MLS Next Pro data is now available.</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="itscalledsoccer-010">itscalledsoccer 0.1.0<a class="anchor" aria-label="anchor" href="#itscalledsoccer-010"></a></h2><p class="text-muted">CRAN release: 2022-02-08</p>
-<p>Initial release.</p>
+<div class="section level4">
+<h4 id="introducing-itscalledsoccer---0-1-0">Introducing itscalledsoccer ⚽ 🎉<a class="anchor" aria-label="anchor" href="#introducing-itscalledsoccer---0-1-0"></a></h4>
+<p>This is the first release of <code>itscalledsoccer</code>, a wrapper around the same API that powers the <a href="https://app.americansocceranalysis.com/" class="external-link">American Soccer Analysis app</a>. It enables R users to programmatically retrieve advanced analytics for their favorite players and teams, with coverage of the following competitions:</p>
+<ul><li>Major League Soccer</li>
+<li>National Women’s Soccer League</li>
+<li>USL Championship</li>
+<li>USL League One</li>
+<li>MLS NEXT Pro</li>
+<li>North American Soccer League (defunct)</li>
+</ul><p>We at ASA, have been working on this for the better part of 6 months and are super excited to release it. We hope it makes interacting with our data easier and allows people to build new and informative things.</p>
+</div>
+<div class="section level4">
+<h4 id="whats-new--0-1-0">What’s new ✨<a class="anchor" aria-label="anchor" href="#whats-new--0-1-0"></a></h4>
+<p>Technically everything in the package is new, but we’ll highlight all the functions that are currently available and provide a brief description of what data they return. The package does take a couple seconds to initialize because we do cache some data at the start.</p>
+<ul><li>
+<code>get_stadia</code>: Gets data about stadiums, things like location, name and capacity.</li>
+<li>
+<code>get_referees</code>: Gets data about referees, things like name, birth date and nationality.</li>
+<li>
+<code>get_managers</code>: Gets data about managers, things like name and nationality.</li>
+<li>
+<code>get_teams</code>: Gets data about teams, things like abbreviation and name.</li>
+<li>
+<code>get_players</code>: Gets data about players, things like height, weight and nationality.</li>
+<li>
+<code>get_games</code>: Gets data about games, things like score, attendance and matchday.</li>
+<li>
+<code>get_player_xgoals</code>: Gets a player(s) xGoals for a season or range of dates.</li>
+<li>
+<code>get_player_xpass</code>: Gets a player(s) xPass for a season or range of dates.</li>
+<li>
+<code>get_player_goals_added</code>: Gets a player(s) g+ for a season or range of dates.</li>
+<li>
+<code>get_player_salaries</code>: Gets a player(s) salary for a season or range of dates, only available for MLS.</li>
+<li>
+<code>get_goalkeeper_xgoals</code>: Gets a goalkeepers(s) xGoals for a season or range of dates.</li>
+<li>
+<code>get_goalkeeper_goals_added</code>: Gets a goalkeepers(s) g+ for a season or range of dates.</li>
+<li>
+<code>get_team_xgoals</code>: Gets a team(s) xGoals for a season or range of dates.</li>
+<li>
+<code>get_team_xpass</code>: Gets a team(s) xPass for a season or range of dates.</li>
+<li>
+<code>get_team_goals_added</code>: Gets a team(s) xPass for a season or range of dates.</li>
+<li>
+<code>get_team_salaries</code>: Gets a team(s) salary for a season or range of dates, only available for MLS.</li>
+<li>
+<code>get_game_xgoals</code>: Gets a game(s) xGoals for a season or range of dates.</li>
+</ul><p>For more info on xGoals, xPass and g+, check out these articles:</p>
+<ul><li><a href="https://www.americansocceranalysis.com/explanation?rq=xgoals" class="external-link">xGoals Explanation</a></li>
+<li><a href="https://www.americansocceranalysis.com/home/2018/4/19/an-updated-expected-passing-model?rq=xpass" class="external-link">An Updated Expected Passing Model</a></li>
+<li><a href="https://www.americansocceranalysis.com/what-are-goals-added" class="external-link">What Are Goals Added</a></li>
+</ul></div>
+<div class="section level4">
+<h4 id="bug-fixes--0-1-0">Bug fixes 🐛<a class="anchor" aria-label="anchor" href="#bug-fixes--0-1-0"></a></h4>
+<p>None, but if you do find a bug while using the package, please submit an <a href="https://github.com/American-Soccer-Analysis/itscalledsoccer/issues" class="external-link">issue</a>.</p>
+</div>
+<div class="section level4">
+<h4 id="documentation--0-1-0">Documentation 📚<a class="anchor" aria-label="anchor" href="#documentation--0-1-0"></a></h4>
+<p>We know our documentation is a bit sparse at the moment, but we plan on building it up and adding more examples over time. In the meantime, <a href="https://app.americansocceranalysis.com/api/v1/__docs__/" class="external-link">the API documentation</a> should be a sufficient stop gap for specific functions.</p>
+<p>Happy soccering!</p>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
