@@ -1,3 +1,10 @@
+# itscalledsoccer 0.2.2
+
+### Bug fixes 🐛 
+
+- Resolve issue with nested vectors occasionally being interpreted as lists within data frame columns.
+
+
 # itscalledsoccer 0.2.1
 
 ### Bug fixes 🐛 

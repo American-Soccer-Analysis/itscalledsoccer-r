@@ -98,17 +98,37 @@
 
     if (is.data.frame(tmp_response)) {
         offset <- self$MAX_API_LIMIT
+        addtl_responses <- list()
 
         while (nrow(tmp_response) == self$MAX_API_LIMIT) {
             query$offset <- offset
             tmp_response <- .single_request(self, url, query)
+            tmp_response <- .cast_lists_to_vectors(tmp_response)
 
-            response <- response %>% dplyr::bind_rows(tmp_response)
+            addtl_responses <- append(addtl_responses, list(tmp_response))
             offset <- offset + self$MAX_API_LIMIT
+        }
+
+        if (length(addtl_responses) > 0) {
+            response <- data.table::rbindlist(
+                append(list(response), addtl_responses),
+                fill = TRUE
+            )
         }
     }
 
     return(response)
+}
+
+.cast_lists_to_vectors <- function(df) {
+    target_cols <- names(which(sapply(df, mode) == "list"))
+
+    for (target_col in target_cols) {
+        idx <- which(sapply(df[[target_col]], class) == "list")
+        df[[target_col]][idx] <- lapply(df[[target_col]][idx], unlist)
+    }
+
+    return(df)
 }
 
 .format_comma <- function(..., .max = 6) {

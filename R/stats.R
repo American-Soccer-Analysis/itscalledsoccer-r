@@ -52,7 +52,6 @@ get_stats <- function(self, type, entity, leagues, ...) {
 
 
     stats <- list()
-    i <- 1
 
     for (league in unique(leagues)) {
         url <- glue::glue("{self$base_url}/{league}/{entity}/{type}")
@@ -61,8 +60,7 @@ get_stats <- function(self, type, entity, leagues, ...) {
             as.data.frame() %>%
             dplyr::mutate(competition = league)
 
-        stats[[i]] <- response
-        i <- i + 1
+        stats <- append(stats, list(response))
     }
 
     stats <- data.table::rbindlist(stats, fill = TRUE)

@@ -4,7 +4,6 @@ get_entity <- function(self, type) {
     cat(glue::glue("  Gathering {plural_type}"))
 
     entity_all <- list()
-    i <- 1
 
     for (league in self$LEAGUES) {
         url <- glue::glue("{self$base_url}/{league}/{plural_type}")
@@ -12,8 +11,7 @@ get_entity <- function(self, type) {
         response <- .execute_query(self, url)
         response <- response %>% dplyr::mutate(competition = league)
 
-        entity_all[[i]] <- response
-        i <- i + 1
+        entity_all <- append(entity_all, list(response))
 
         cat(".")
     }
@@ -73,15 +71,11 @@ get_games <- function(self, leagues, game_ids, team_ids, team_names, seasons, st
     if (!missing(stages)) query$stage_name <- stages
 
     games <- list()
-    i <- 1
 
     for (league in unique(leagues)) {
         url <- glue::glue("{self$base_url}/{league}/games")
-
         response <- .execute_query(self, url, query)
-
-        games[[i]] <- response
-        i <- i + 1
+        games <- append(games, list(response))
     }
 
     games <- data.table::rbindlist(games, fill = TRUE) %>% dplyr::arrange(.data$date_time_utc)
