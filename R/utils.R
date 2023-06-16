@@ -37,6 +37,34 @@
     }
 }
 
+.check_clear_cache <- function(self) {
+    .latest_update_timestamp <- .get_latest_update_timestamp(self)
+    if (.latest_update_timestamp > self$latest_update_timestamp) {
+        cat(crayon::yellow("  INFO: New data found. Clearing session cache and refreshing `AmericanSoccerAnalysis` class.\n"))
+        httpcache::clearCache()
+        .initialize_entities(self)
+        self$latest_update_timestamp <- .latest_update_timestamp
+    }
+}
+
+#' @importFrom rlang .data
+.get_latest_update_timestamp <- function(self) {
+    games <- list()
+
+    for (league in self$LEAGUES) {
+        url <- glue::glue("{self$base_url}/{league}/games")
+        response <- .execute_query(self, url, uncached = )
+        games <- append(games, list(response))
+    }
+
+    latest_update_timestamp <- data.table::rbindlist(games, fill = TRUE) %>%
+        dplyr::pull(.data$last_updated_utc) %>%
+        max(na.rm = TRUE) %>%
+        as.POSIXct(format="%Y-%m-%d %H:%M:%S", tz="UTC")
+
+    return(latest_update_timestamp)
+}
+
 .convert_names_to_ids <- function(df, names) {
     . <- NULL
     names_clean <- .clean_names(names)
@@ -76,14 +104,15 @@
     }
 }
 
-.single_request <- function(self, url, query) {
+.single_request <- function(self, url, query, uncached) {
     for (arg_name in names(query)) {
         if (length(query[[arg_name]]) > 1) {
             query[[arg_name]] <- .collapse_query_string(query[[arg_name]])
         }
     }
 
-    r <- httpcache::GET(url = url, query = query, self$httr_configs)
+    if (!uncached) r <- httpcache::GET(url = url, query = query, self$httr_configs)
+    if (uncached)  r <- httr::GET(url = url, query = query, self$httr_configs)
     .stop_for_status(r)
     response <- r %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
@@ -92,8 +121,8 @@
     return(response)
 }
 
-.execute_query <- function(self, url, query = list()) {
-    tmp_response <- .single_request(self, url, query)
+.execute_query <- function(self, url, query = list(), uncached = FALSE) {
+    tmp_response <- .single_request(self, url, query, uncached)
     response <- tmp_response
 
     if (is.data.frame(tmp_response)) {
@@ -102,7 +131,7 @@
 
         while (nrow(tmp_response) == self$MAX_API_LIMIT) {
             query$offset <- offset
-            tmp_response <- .single_request(self, url, query)
+            tmp_response <- .single_request(self, url, query, uncached)
             tmp_response <- .cast_lists_to_vectors(tmp_response)
 
             addtl_responses <- append(addtl_responses, list(tmp_response))

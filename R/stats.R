@@ -1,11 +1,13 @@
 #' @importFrom rlang .data
-get_stats <- function(self, type, entity, leagues, ...) {
+.get_stats <- function(self, type, entity, leagues, ...) {
     query <- list(...)
     if (!all(rlang::have_name(query))) {
         bad <- which(!rlang::have_name(query)) + 1
         msg <- glue::glue("{.format_args(bad)} must be named.")
         stop(msg)
     }
+
+    .check_clear_cache(self)
 
     if (type == "salaries") {
         .check_leagues_salaries(self, leagues)

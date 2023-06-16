@@ -1,7 +1,7 @@
 #' @importFrom rlang .data
-get_entity <- function(self, type) {
+.get_entity <- function(self, type, verbose) {
     plural_type <- if (type == "stadium") "stadia" else glue::glue("{type}s")
-    cat(glue::glue("  Gathering {plural_type}"))
+    if (verbose) cat(glue::glue("  Gathering {plural_type}"))
 
     entity_all <- list()
 
@@ -13,7 +13,7 @@ get_entity <- function(self, type) {
 
         entity_all <- append(entity_all, list(response))
 
-        cat(".")
+        if (verbose) cat(".")
     }
 
     entity_all <- data.table::rbindlist(entity_all, fill = TRUE) %>%
@@ -22,15 +22,24 @@ get_entity <- function(self, type) {
         dplyr::ungroup() %>%
         dplyr::arrange(!!as.symbol(glue::glue("{type}_name")))
 
-    cat(crayon::green(clisymbols::symbol$tick), "\n")
+    if (verbose) cat(crayon::green(clisymbols::symbol$tick), "\n")
 
     return(entity_all)
 }
 
+.initialize_entities <- function(self, verbose = FALSE) {
+    self$players <- .get_entity(self, "player", verbose = verbose)
+    self$teams <- .get_entity(self, "team", verbose = verbose)
+    self$stadia <- .get_entity(self, "stadium", verbose = verbose)
+    self$managers <- .get_entity(self, "manager", verbose = verbose)
+    self$referees <- .get_entity(self, "referee", verbose = verbose)
+}
+
 #' @importFrom rlang .data
-filter_entity <- function(self, entity, leagues, ids, names) {
+.filter_entity <- function(self, entity, leagues, ids, names) {
     .check_leagues(self, leagues)
     .check_ids_names(ids, names)
+    .check_clear_cache(self)
 
     entity_filtered <- self[[entity]] %>%
         tidyr::unnest(.data$competitions)
@@ -57,9 +66,10 @@ filter_entity <- function(self, entity, leagues, ids, names) {
 }
 
 #' @importFrom rlang .data
-get_games <- function(self, leagues, game_ids, team_ids, team_names, seasons, stages) {
+.get_games <- function(self, leagues, game_ids, team_ids, team_names, seasons, stages) {
     .check_leagues(self, leagues)
     .check_ids_names(team_ids, team_names)
+    .check_clear_cache(self)
 
     if (missing(leagues)) leagues <- self$LEAGUES
 
