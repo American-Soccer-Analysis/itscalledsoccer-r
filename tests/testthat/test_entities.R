@@ -1,5 +1,9 @@
 test_that("Filtering players works properly", {
 
+    # TODO: Move all these tests into the API codebase and mock what's below
+    skip_on_cran()
+    skip_on_ci()
+
     # No filters ---------------------------------------------------------
     .obj <- asa_client$get_players() %>% nrow()
     .exp <- asa_client$players %>% nrow()
