@@ -1,5 +1,14 @@
 # itscalledsoccer (development version)
 
+### What's new ✨
+
+- Added a check before each function call to check whether new source data is available and clear the client-side cache if so.
+
+### Bug fixes 🐛 
+
+- Skipping all API calls on CRAN to address the CRAN policy: "Packages which use Internet resources should fail gracefully with an informative message if the resource is not available or has changed (and not give a check warning nor error)."
+
+
 # itscalledsoccer 0.2.2
 
 ### Bug fixes 🐛 
