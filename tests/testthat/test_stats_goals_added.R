@@ -236,6 +236,10 @@ test_that("Querying player-level goals added (g+) values works properly", {
 
 test_that("Querying goalkeeper-level goals added (g+) values works properly", {
 
+    # TODO: Move all these tests into the API codebase and mock what's below
+    skip_on_cran()
+    skip_on_ci()
+
     # No filters ---------------------------------------------------------
     .obj <- asa_client$get_goalkeeper_goals_added() %>% nrow()
     expect_gte(.obj, 0)
@@ -448,6 +452,10 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
 })
 
 test_that("Querying team-level goals added (g+) values works properly", {
+
+    # TODO: Move all these tests into the API codebase and mock what's below
+    skip_on_cran()
+    skip_on_ci()
 
     # No filters ---------------------------------------------------------
     .obj <- asa_client$get_team_goals_added() %>% nrow()

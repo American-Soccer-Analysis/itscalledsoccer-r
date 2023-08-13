@@ -43,8 +43,11 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         initialize = function(...) {
             self$base_url <- glue::glue("https://app.americansocceranalysis.com/api/{self$API_VERSION}")
             self$httr_configs <- list(...)
-            self$latest_update_timestamp <- .get_latest_update_timestamp(self)
-            .initialize_entities(self, verbose = TRUE)
+
+            if (!rlang::is_interactive() && !isTRUE(as.logical(Sys.getenv("NOT_CRAN", "false")))) {
+                self$latest_update_timestamp <- .get_latest_update_timestamp(self)
+                .initialize_entities(self, verbose = TRUE)
+            }
         },
 
         #' @description Appends new \code{httr} configs to the existing class.
