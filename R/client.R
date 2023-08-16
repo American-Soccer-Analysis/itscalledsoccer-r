@@ -34,17 +34,20 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #' @field httr_configs Configs to pass on to all \code{httr} functions. See \href{https://www.rdocumentation.org/packages/httr/versions/1.4.2/topics/config}{documentation}.
         httr_configs = list(),
 
+        #' @field latest_update_timestamp Keeps record of the latest update timestamp for queried data. Used to conditionally clear the client-side cache.
+        latest_update_timestamp = NULL,
+
         #' @description Creates a new \code{AmericanSoccerAnalysis} object.
         #' @param ... Configs to pass on to all \code{httr} functions. See \href{https://www.rdocumentation.org/packages/httr/versions/1.4.2/topics/config}{documentation}.
         #' @return A new \code{AmericanSoccerAnalysis} object.
         initialize = function(...) {
             self$base_url <- glue::glue("https://app.americansocceranalysis.com/api/{self$API_VERSION}")
             self$httr_configs <- list(...)
-            self$players <- get_entity(self, "player")
-            self$teams <- get_entity(self, "team")
-            self$stadia <- get_entity(self, "stadium")
-            self$managers <- get_entity(self, "manager")
-            self$referees <- get_entity(self, "referee")
+
+            if (!rlang::is_interactive() && !isTRUE(as.logical(Sys.getenv("NOT_CRAN", "false")))) {
+                self$latest_update_timestamp <- .get_latest_update_timestamp(self)
+                .initialize_entities(self, verbose = TRUE)
+            }
         },
 
         #' @description Appends new \code{httr} configs to the existing class.
@@ -63,7 +66,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #' @param ids Player IDs on which to filter. Cannot be combined with \code{names}. Accepts a character vector of length >= 1.
         #' @param names Player names on which to filter. Partial matches are accepted. Cannot be combined with \code{ids}. Accepts a character vector of length >= 1.
         get_players = function(leagues, ids, names) {
-            players <- filter_entity(self, "players", leagues, ids, names)
+            players <- .filter_entity(self, "players", leagues, ids, names)
             return(players)
         },
 
@@ -72,7 +75,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #' @param ids Team IDs on which to filter. Cannot be combined with \code{names}. Accepts a character vector of length >= 1.
         #' @param names Team names on which to filter. Partial matches and abbreviations are accepted. Cannot be combined with \code{ids}. Accepts a character vector of length >= 1.
         get_teams = function(leagues, ids, names) {
-            teams <- filter_entity(self, "teams", leagues, ids, names)
+            teams <- .filter_entity(self, "teams", leagues, ids, names)
             return(teams)
         },
 
@@ -81,7 +84,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #' @param ids Stadium IDs on which to filter. Cannot be combined with \code{names}. Accepts a character vector of length >= 1.
         #' @param names Stadium names on which to filter. Partial matches are accepted. Cannot be combined with \code{ids}. Accepts a character vector of length >= 1.
         get_stadia = function(leagues, ids, names) {
-            stadia <- filter_entity(self, "stadia", leagues, ids, names)
+            stadia <- .filter_entity(self, "stadia", leagues, ids, names)
             return(stadia)
         },
 
@@ -90,7 +93,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #' @param ids Manager IDs on which to filter. Cannot be combined with \code{names}. Accepts a character vector of length >= 1.
         #' @param names Manager names on which to filter. Partial matches are accepted. Cannot be combined with \code{ids}. Accepts a character vector of length >= 1.
         get_managers = function(leagues, ids, names) {
-            managers <- filter_entity(self, "managers", leagues, ids, names)
+            managers <- .filter_entity(self, "managers", leagues, ids, names)
             return(managers)
         },
 
@@ -99,7 +102,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #' @param ids Referee IDs on which to filter. Cannot be combined with \code{names}. Accepts a character vector of length >= 1.
         #' @param names Referee names on which to filter. Partial matches are accepted. Cannot be combined with \code{ids}. Accepts a character vector of length >= 1.
         get_referees = function(leagues, ids, names) {
-            referees <- filter_entity(self, "referees", leagues, ids, names)
+            referees <- .filter_entity(self, "referees", leagues, ids, names)
             return(referees)
         },
 
@@ -111,7 +114,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #' @param seasons Name(s)/year(s) of seasons. See the \href{https://app.americansocceranalysis.com/api/v1/__docs__/}{API documentation} for possible values. Accepts a character vector of length >= 1.
         #' @param stages Describes the stage of competition in which a game took place. See the \href{https://app.americansocceranalysis.com/api/v1/__docs__/}{API documentation} for possible values. Accepts a character vector of length >= 1.
         get_games = function(leagues, game_ids, team_ids, team_names, seasons, stages) {
-            games <- get_games(self, leagues, game_ids, team_ids, team_names, seasons, stages)
+            games <- .get_games(self, leagues, game_ids, team_ids, team_names, seasons, stages)
             return(games)
         },
 
@@ -137,7 +140,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #'     \item \code{general_position}: Describes the most common position played by each player over the specified period of time. Valid keywords include: 'GK', 'CB', 'FB', 'DM', 'CM', 'AM', 'W', and 'ST'. Accepts a character vector of length >= 1.
         #'   }
         get_player_xgoals = function(leagues, ...) {
-            player_xgoals <- get_stats(self, type = "xgoals", entity = "players", leagues, ...)
+            player_xgoals <- .get_stats(self, type = "xgoals", entity = "players", leagues, ...)
             return(player_xgoals)
         },
 
@@ -162,7 +165,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #'     \item \code{general_position}: Describes the most common position played by each player over the specified period of time. Valid keywords include: 'GK', 'CB', 'FB', 'DM', 'CM', 'AM', 'W', and 'ST'. Accepts a character vector of length >= 1.
         #'   }
         get_player_xpass = function(leagues, ...) {
-            player_xpass <- get_stats(self, type = "xpass", entity = "players", leagues, ...)
+            player_xpass <- .get_stats(self, type = "xpass", entity = "players", leagues, ...)
             return(player_xpass)
         },
 
@@ -187,7 +190,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #'     \item \code{above_replacement}: Logical indicator to compare players against replacement-level values. This will only return aggregated g+ values, rather than disaggregated g+ values by action type.
         #'   }
         get_player_goals_added = function(leagues, ...) {
-            player_goals_added <- get_stats(self, type = "goals-added", entity = "players", leagues, ...)
+            player_goals_added <- .get_stats(self, type = "goals-added", entity = "players", leagues, ...)
             return(player_goals_added)
         },
 
@@ -205,7 +208,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #'     \item \code{end_date}: End of a date range. Must be a string in YYYY-MM-DD format. Cannot be combined with \code{season_name}.
         #'   }
         get_player_salaries = function(leagues, ...) {
-            player_salaries <- get_stats(self, type = "salaries", entity = "players", leagues, ...)
+            player_salaries <- .get_stats(self, type = "salaries", entity = "players", leagues, ...)
             return(player_salaries)
         },
 
@@ -229,7 +232,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #'     \item \code{stage_name}: Describes the stage of competition in which a game took place. See the \href{https://app.americansocceranalysis.com/api/v1/__docs__/}{API documentation} for possible values. Accepts a character vector of length >= 1.
         #'   }
         get_goalkeeper_xgoals = function(leagues, ...) {
-            goalkeeper_xgoals <- get_stats(self, type = "xgoals", entity = "goalkeepers", leagues, ...)
+            goalkeeper_xgoals <- .get_stats(self, type = "xgoals", entity = "goalkeepers", leagues, ...)
             return(goalkeeper_xgoals)
         },
 
@@ -253,7 +256,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #'     \item \code{above_replacement}: Logical indicator to compare players against replacement-level values. This will only return aggregated g+ values, rather than disaggregated g+ values by action type.
         #'   }
         get_goalkeeper_goals_added = function(leagues, ...) {
-            goalkeeper_goals_added <- get_stats(self, type = "goals-added", entity = "goalkeepers", leagues, ...)
+            goalkeeper_goals_added <- .get_stats(self, type = "goals-added", entity = "goalkeepers", leagues, ...)
             return(goalkeeper_goals_added)
         },
 
@@ -276,7 +279,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #'     \item \code{stage_name}: Describes the stage of competition in which a game took place. See the \href{https://app.americansocceranalysis.com/api/v1/__docs__/}{API documentation} for possible values. Accepts a character vector of length >= 1.
         #'   }
         get_team_xgoals = function(leagues, ...) {
-            team_xgoals <- get_stats(self, type = "xgoals", entity = "teams", leagues, ...)
+            team_xgoals <- .get_stats(self, type = "xgoals", entity = "teams", leagues, ...)
             return(team_xgoals)
         },
 
@@ -297,7 +300,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #'     \item \code{stage_name}: Describes the stage of competition in which a game took place. See the \href{https://app.americansocceranalysis.com/api/v1/__docs__/}{API documentation} for possible values. Accepts a character vector of length >= 1.
         #'   }
         get_team_xpass = function(leagues, ...) {
-            team_xpass <- get_stats(self, type = "xpass", entity = "teams", leagues, ...)
+            team_xpass <- .get_stats(self, type = "xpass", entity = "teams", leagues, ...)
             return(team_xpass)
         },
 
@@ -315,7 +318,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #'     \item \code{gamestate_trunc}: Integer (score differential) value between -2 and 2, inclusive. Gamestates more extreme than -2 and 2 have been included with -2 and 2, respectively. Accepts a character or integer vector of length >= 1.
         #'   }
         get_team_goals_added = function(leagues, ...) {
-            team_goals_added <- get_stats(self, type = "goals-added", entity = "teams", leagues, ...)
+            team_goals_added <- .get_stats(self, type = "goals-added", entity = "teams", leagues, ...)
             return(team_goals_added)
         },
 
@@ -331,7 +334,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #'     \item \code{split_by_positions}: Logical indicator to group results by positions. Results must be grouped by at least one of teams, positions, or seasons.
         #'   }
         get_team_salaries = function(leagues, ...) {
-            team_salaries <- get_stats(self, type = "salaries", entity = "teams", leagues, ...)
+            team_salaries <- .get_stats(self, type = "salaries", entity = "teams", leagues, ...)
             return(team_salaries)
         },
 
@@ -346,7 +349,7 @@ AmericanSoccerAnalysis <- R6::R6Class("AmericanSoccerAnalysis",
         #'     \item \code{stage_name}: Describes the stage of competition in which a game took place. See the \href{https://app.americansocceranalysis.com/api/v1/__docs__/}{API documentation} for possible values. Accepts a character vector of length >= 1.
         #'   }
         get_game_xgoals = function(leagues, ...) {
-            game_xgoals <- get_stats(self, type = "xgoals", entity = "games", leagues, ...)
+            game_xgoals <- .get_stats(self, type = "xgoals", entity = "games", leagues, ...)
             return(game_xgoals)
         }
     )

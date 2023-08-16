@@ -1,5 +1,9 @@
 test_that("Filtering players works properly", {
 
+    # TODO: Move all these tests into the API codebase and mock what's below
+    skip_on_cran()
+    skip_on_ci()
+
     # No filters ---------------------------------------------------------
     .obj <- asa_client$get_players() %>% nrow()
     .exp <- asa_client$players %>% nrow()
@@ -102,6 +106,10 @@ test_that("Filtering players works properly", {
 })
 
 test_that("Filtering teams works properly", {
+
+    # TODO: Move all these tests into the API codebase and mock what's below
+    skip_on_cran()
+    skip_on_ci()
 
     # No filters ---------------------------------------------------------
     .obj <- asa_client$get_teams() %>% nrow()
@@ -210,6 +218,10 @@ test_that("Filtering teams works properly", {
 
 test_that("Filtering stadia works properly", {
 
+    # TODO: Move all these tests into the API codebase and mock what's below
+    skip_on_cran()
+    skip_on_ci()
+
     # No filters ---------------------------------------------------------
     .obj <- asa_client$get_stadia() %>% nrow()
     .exp <- asa_client$stadia %>% nrow()
@@ -316,6 +328,10 @@ test_that("Filtering stadia works properly", {
 })
 
 test_that("Filtering managers works properly", {
+
+    # TODO: Move all these tests into the API codebase and mock what's below
+    skip_on_cran()
+    skip_on_ci()
 
     # No filters ---------------------------------------------------------
     .obj <- asa_client$get_managers() %>% nrow()
@@ -424,6 +440,10 @@ test_that("Filtering managers works properly", {
 
 test_that("Filtering referees works properly", {
 
+    # TODO: Move all these tests into the API codebase and mock what's below
+    skip_on_cran()
+    skip_on_ci()
+
     # No filters ---------------------------------------------------------
     .obj <- asa_client$get_referees() %>% nrow()
     .exp <- asa_client$referees %>% nrow()
@@ -530,6 +550,10 @@ test_that("Filtering referees works properly", {
 })
 
 test_that("Querying games works properly", {
+
+    # TODO: Move all these tests into the API codebase and mock what's below
+    skip_on_cran()
+    skip_on_ci()
 
     # No filters ---------------------------------------------------------
     .obj <- asa_client$get_games() %>% nrow()
