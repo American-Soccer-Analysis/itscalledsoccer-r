@@ -31,6 +31,8 @@ Does not take any arguments to initialize.
 \item{\code{referees}}{Data frame containing referees from all leagues.}
 
 \item{\code{httr_configs}}{Configs to pass on to all \code{httr} functions. See \href{https://www.rdocumentation.org/packages/httr/versions/1.4.2/topics/config}{documentation}.}
+
+\item{\code{latest_update_timestamp}}{Keeps record of the latest update timestamp for queried data. Used to conditionally clear the client-side cache.}
 }
 \if{html}{\out{</div>}}
 }
