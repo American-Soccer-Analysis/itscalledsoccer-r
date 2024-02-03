@@ -46,7 +46,7 @@ asa_client <- AmericanSoccerAnalysis$new(
 
 ## Usage
 
-Any of the `get_*` methods can be used to retrieve the same data made available in the [American Soccer Analysis app](https://app.americansocceranalysis.com/). Partial matches or abbreviations are accepted for any player or team names. For most methods, arguments _must be named_. Additionally, dataframes of complete players, teams, games, and more are also available for joining additional information. A variety of examples are below, and full documentation can be found the CRAN documentation, linked above and [here](https://cran.r-project.org/web/packages/itscalledsoccer/itscalledsoccer.pdf).
+Any of the `get_*` methods can be used to retrieve the same data made available in the [American Soccer Analysis app](https://app.americansocceranalysis.com/). Partial matches or abbreviations are accepted for any player or team names. For most methods, arguments _must be named_. Additionally, dataframes of complete players, teams, games, and more are also available for joining additional information. A variety of examples are below, and full documentation can be found via the CRAN documentation, linked above and [here](https://cran.r-project.org/web/packages/itscalledsoccer/itscalledsoccer.pdf).
 
 ```r
 # Initialize the main class
