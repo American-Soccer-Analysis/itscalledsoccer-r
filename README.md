@@ -46,23 +46,83 @@ asa_client <- AmericanSoccerAnalysis$new(
 
 ## Usage
 
-Any of the `get_*` methods can be used to retrieve the same data made available in the [American Soccer Analysis app](https://app.americansocceranalysis.com/). Partial matches or abbreviations are accepted for any player or team names. For most methods, arguments _must be named_. A few examples are below.
+Any of the `get_*` methods can be used to retrieve the same data made available in the [American Soccer Analysis app](https://app.americansocceranalysis.com/). Partial matches or abbreviations are accepted for any player or team names. For most methods, arguments _must be named_. Additionally, dataframes of complete players, teams, games, and more are also available for joining additional information. A variety of examples are below, and full documentation can be found via the CRAN documentation, linked above and [here](https://cran.r-project.org/web/packages/itscalledsoccer/itscalledsoccer.pdf).
+
+```r
+# Initialize the main class
+asa_client <- AmericanSoccerAnalysis$new()
+```
+
+```r
+# Access dataframes of games, players, teams, and more from the ASA client object created above
+all_games <- asa_client$games
+all_teams <- asa_client$teams
+all_players <- asa_client$players
+
+# see league options
+asa_client$LEAGUES
+```
 
 ```r
 # Get all players named "Dax"
-asa_players <- asa_client$get_players(names = "Dax")
+dax_players <- asa_client$get_players(names = "Dax")
+```
 
-# Get season-by-season xG data for all players named "Dax"
+```r
+# Get cumulative player shot information (i.e., xgoals) from the NWSL over three seasons
+# see other parameters in package documentation
+asa_xgoals <- asa_client$get_player_xgoals(
+    leagues = "nwsl", 
+    season_name = c(2021:2023), 
+    split_by_seasons = FALSE)
+head(shots_df)
+```
+
+```r
+# Get season-by-season shot information (i.e., xgoals) for all players named "Dax" in MLS
 asa_xgoals <- asa_client$get_player_xgoals(
     leagues = "mls",
     player_names = "Dax",
     split_by_seasons = TRUE
 )
 
-# Get cumulative xPass data for all USL League One teams
+# Join player names
+library(dplyr)
+asa_xgoals <- asa_xgoals %>%
+    left_join(all_players,
+              by = "player_id")
+```
+
+```r
+# Get player passing information (i.e., xpass) from MLS in 2023
+asa_xpass <- asa_client$get_player_xpass(
+    leagues = "mls", 
+    season_name = 2023)
+
+# Get cumulative/career xPass data for all USL League One teams
 asa_xpass <- asa_client$get_team_xpass(
     leagues = "usl1"
 )
+```
+
+```r
+# Get team g+ information (i.e., goals added) from MLS
+library(tidyr)
+
+# tall version
+asa_goals_added <- asa_client$get_team_goals_added(
+    leagues = "mls", 
+    season_name = 2023) %>%
+    tidyr::unnest(data)
+
+# wide version
+asa_goals_added <- asa_client$get_team_goals_added(
+    leagues = "mls", 
+    season_name = 2023) %>%
+    tidyr::unnest(data) %>%
+    tidyr::pivot_wider( id_cols = team_id, 
+                        names_from = action_type, 
+                        values_from = c(num_actions_for:goals_added_against))
 
 # Get game-by-game goals added (g+) data for all goalkeepers named "Matt Turner"
 asa_goals_added <- asa_client$get_goalkeeper_goals_added(
@@ -71,3 +131,4 @@ asa_goals_added <- asa_client$get_goalkeeper_goals_added(
     split_by_game = TRUE
 )
 ```
+
