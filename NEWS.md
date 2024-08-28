@@ -1,5 +1,11 @@
 # itscalledsoccer (development version)
 
+# itscalledsoccer 0.2.5
+
+### What's new ✨
+
+- USL Super League data is now available.
+
 # itscalledsoccer 0.2.4
 
 ### Bug fixes 🐛
