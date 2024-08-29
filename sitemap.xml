@@ -1,33 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/404.html</loc>
-  </url>
-  <url>
-    <loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/index.html</loc>
-  </url>
-  <url>
-    <loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/pull_request_template.html</loc>
-  </url>
-  <url>
-    <loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/reference/AmericanSoccerAnalysis.html</loc>
-  </url>
-  <url>
-    <loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/reference/pipe.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/404.html</loc></url>
+<url><loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/LICENSE-text.html</loc></url>
+<url><loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/LICENSE.html</loc></url>
+<url><loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/authors.html</loc></url>
+<url><loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/index.html</loc></url>
+<url><loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/news/index.html</loc></url>
+<url><loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/reference/AmericanSoccerAnalysis.html</loc></url>
+<url><loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/reference/index.html</loc></url>
+<url><loc>https://american-soccer-analysis.github.io/itscalledsoccer-r/reference/pipe.html</loc></url>
 </urlset>
+
