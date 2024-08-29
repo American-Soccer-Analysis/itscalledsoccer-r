@@ -14,6 +14,7 @@
 - National Women's Soccer League
 - USL Championship
 - USL League One
+- USL Super League
 - MLS NEXT Pro
 - North American Soccer League (defunct)
 
