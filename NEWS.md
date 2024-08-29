@@ -1,6 +1,6 @@
 # itscalledsoccer (development version)
 
-# itscalledsoccer 0.2.5
+# itscalledsoccer 0.3.0
 
 ### What's new ✨
 
