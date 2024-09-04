@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-09-04T16:34Z
+last_built: 2024-09-04T16:41Z
 urls:
   reference: https://american-soccer-analysis.github.io/itscalledsoccer-r/reference
   article: https://american-soccer-analysis.github.io/itscalledsoccer-r/articles
