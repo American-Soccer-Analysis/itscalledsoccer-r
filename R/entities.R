@@ -22,7 +22,7 @@
         dplyr::ungroup() %>%
         dplyr::arrange(!!as.symbol(glue::glue("{type}_name")))
 
-    if (verbose) cat(crayon::green(clisymbols::symbol$tick), "\n")
+    if (verbose) cli::cat_bullet(bullet = "tick", bullet_col = "green")
 
     return(entity_all)
 }
