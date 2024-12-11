@@ -18,7 +18,7 @@ test_that("Filtering players works properly", {
 
     .obj <- asa_client$get_players(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         nrow()
 
@@ -29,7 +29,7 @@ test_that("Filtering players works properly", {
 
     .obj <- asa_client$get_players(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
         nrow()
@@ -81,7 +81,7 @@ test_that("Filtering players works properly", {
 
     .obj <- asa_client$get_players(leagues = LEAGUES, ids = IDS) %>% nrow()
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES,
                       .data$player_id %in% IDS) %>%
         dplyr::distinct(.data$player_id) %>%
@@ -95,7 +95,7 @@ test_that("Filtering players works properly", {
 
     .obj <- asa_client$get_players(leagues = LEAGUES, names = NAMES) %>% nrow()
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES,
                       grepl(paste0(NAMES, collapse = "|"), .data$player_name)) %>%
         dplyr::distinct(.data$player_id) %>%
@@ -125,7 +125,7 @@ test_that("Filtering teams works properly", {
 
     .obj <- asa_client$get_teams(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         nrow()
 
@@ -136,7 +136,7 @@ test_that("Filtering teams works properly", {
 
     .obj <- asa_client$get_teams(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
         nrow()
@@ -192,7 +192,7 @@ test_that("Filtering teams works properly", {
 
     .obj <- asa_client$get_teams(leagues = LEAGUES, ids = IDS) %>% nrow()
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES,
                       .data$team_id %in% IDS) %>%
         dplyr::distinct(.data$team_id) %>%
@@ -206,7 +206,7 @@ test_that("Filtering teams works properly", {
 
     .obj <- asa_client$get_teams(leagues = LEAGUES, names = NAMES) %>% nrow()
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES,
                       grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
         dplyr::distinct(.data$team_id) %>%
@@ -236,7 +236,7 @@ test_that("Filtering stadia works properly", {
 
     .obj <- asa_client$get_stadia(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$stadia %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         nrow()
 
@@ -247,7 +247,7 @@ test_that("Filtering stadia works properly", {
 
     .obj <- asa_client$get_stadia(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$stadia %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$stadium_id) %>%
         nrow()
@@ -303,7 +303,7 @@ test_that("Filtering stadia works properly", {
 
     .obj <- asa_client$get_stadia(leagues = LEAGUES, ids = IDS) %>% nrow()
     .exp <- asa_client$stadia %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES,
                       .data$stadium_id %in% IDS) %>%
         dplyr::distinct(.data$stadium_id) %>%
@@ -317,7 +317,7 @@ test_that("Filtering stadia works properly", {
 
     .obj <- asa_client$get_stadia(leagues = LEAGUES, names = NAMES) %>% nrow()
     .exp <- asa_client$stadia %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES,
                       grepl(paste0(NAMES, collapse = "|"), .data$stadium_name)) %>%
         dplyr::distinct(.data$stadium_id) %>%
@@ -347,7 +347,7 @@ test_that("Filtering managers works properly", {
 
     .obj <- asa_client$get_managers(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$managers %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         nrow()
 
@@ -358,7 +358,7 @@ test_that("Filtering managers works properly", {
 
     .obj <- asa_client$get_managers(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$managers %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$manager_id) %>%
         nrow()
@@ -414,7 +414,7 @@ test_that("Filtering managers works properly", {
 
     .obj <- asa_client$get_managers(leagues = LEAGUES, ids = IDS) %>% nrow()
     .exp <- asa_client$managers %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES,
                       .data$manager_id %in% IDS) %>%
         dplyr::distinct(.data$manager_id) %>%
@@ -428,7 +428,7 @@ test_that("Filtering managers works properly", {
 
     .obj <- asa_client$get_managers(leagues = LEAGUES, names = NAMES) %>% nrow()
     .exp <- asa_client$managers %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES,
                       grepl(paste0(NAMES, collapse = "|"), .data$manager_name)) %>%
         dplyr::distinct(.data$manager_id) %>%
@@ -458,7 +458,7 @@ test_that("Filtering referees works properly", {
 
     .obj <- asa_client$get_referees(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$referees %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         nrow()
 
@@ -469,7 +469,7 @@ test_that("Filtering referees works properly", {
 
     .obj <- asa_client$get_referees(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$referees %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$referee_id) %>%
         nrow()
@@ -525,7 +525,7 @@ test_that("Filtering referees works properly", {
 
     .obj <- asa_client$get_referees(leagues = LEAGUES, ids = IDS) %>% nrow()
     .exp <- asa_client$referees %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES,
                       .data$referee_id %in% IDS) %>%
         dplyr::distinct(.data$referee_id) %>%
@@ -539,7 +539,7 @@ test_that("Filtering referees works properly", {
 
     .obj <- asa_client$get_referees(leagues = LEAGUES, names = NAMES) %>% nrow()
     .exp <- asa_client$referees %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES,
                       grepl(paste0(NAMES, collapse = "|"), .data$referee_name)) %>%
         dplyr::distinct(.data$referee_id) %>%
@@ -575,7 +575,7 @@ test_that("Querying games works properly", {
         nrow()
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
         nrow()
@@ -592,7 +592,7 @@ test_that("Querying games works properly", {
         nrow()
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
         nrow()

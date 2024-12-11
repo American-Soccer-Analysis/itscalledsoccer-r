@@ -20,7 +20,7 @@ test_that("Querying player-level salary values works properly", {
     LEAGUES <- "mls"
 
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
         dplyr::pull(player_id)
@@ -94,7 +94,7 @@ test_that("Querying player-level salary values works properly", {
     IDS <- "NWMWlBK5lz"
 
     .obj <- asa_client$get_player_salaries(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(.data$team_id) %>%
         nrow()
 
@@ -108,7 +108,7 @@ test_that("Querying player-level salary values works properly", {
     IDS <- c("a2lqRX2Mr0", "lgpMOvnQzy")
 
     .obj <- asa_client$get_player_salaries(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -123,12 +123,12 @@ test_that("Querying player-level salary values works properly", {
     LEAGUES <- "mls"
 
     .obj <- asa_client$get_player_salaries(team_names = NAMES, leagues = LEAGUES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
         nrow()
@@ -140,12 +140,12 @@ test_that("Querying player-level salary values works properly", {
     LEAGUES <- "mls"
 
     .obj <- asa_client$get_player_salaries(team_names = NAMES, leagues = LEAGUES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
         nrow()
@@ -190,7 +190,7 @@ test_that("Querying team-level salary values works properly", {
     LEAGUES <- "mls"
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
         dplyr::pull(team_id)
@@ -210,7 +210,7 @@ test_that("Querying team-level salary values works properly", {
     IDS <- "NWMWlBK5lz"
 
     .obj <- asa_client$get_team_salaries(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(.data$team_id) %>%
         nrow()
 
@@ -224,7 +224,7 @@ test_that("Querying team-level salary values works properly", {
     IDS <- c("a2lqRX2Mr0", "lgpMOvnQzy")
 
     .obj <- asa_client$get_team_salaries(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -239,12 +239,12 @@ test_that("Querying team-level salary values works properly", {
     LEAGUES <- "mls"
 
     .obj <- asa_client$get_team_salaries(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
         nrow()
@@ -256,12 +256,12 @@ test_that("Querying team-level salary values works properly", {
     LEAGUES <- "mls"
 
     .obj <- asa_client$get_team_salaries(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
         nrow()

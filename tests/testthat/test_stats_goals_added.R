@@ -18,7 +18,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
     LEAGUES <- "mls"
 
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
         dplyr::pull("player_id")
@@ -34,7 +34,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
     LEAGUES <- c("mls", "uslc")
 
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
         dplyr::pull("player_id")
@@ -116,7 +116,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
     IDS <- "NWMWlBK5lz"
 
     .obj <- asa_client$get_player_goals_added(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(.data$team_id) %>%
         nrow()
 
@@ -130,7 +130,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
     IDS <- c("a2lqRX2Mr0", "9Yqdwg85vJ")
 
     .obj <- asa_client$get_player_goals_added(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -144,7 +144,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
     NAMES <- "Red Bulls"
 
     .obj <- asa_client$get_player_goals_added(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -158,7 +158,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
     NAMES <- c("Chicago", "Seattle")
 
     .obj <- asa_client$get_player_goals_added(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -189,7 +189,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
     # Single action type -------------------------------------------------
     .exp <- "Passing"
     .obj <- asa_client$get_player_goals_added(action_type = .exp) %>%
-        tidyr::unnest(.data$data) %>%
+        tidyr::unnest(data) %>%
         dplyr::distinct(.data$action_type) %>%
         dplyr::arrange(.data$action_type) %>%
         dplyr::pull("action_type")
@@ -199,7 +199,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
     # Multiple action types ----------------------------------------------
     .exp <- c("Passing", "Shooting")
     .obj <- asa_client$get_player_goals_added(action_type = .exp) %>%
-        tidyr::unnest(.data$data) %>%
+        tidyr::unnest(data) %>%
         dplyr::distinct(.data$action_type) %>%
         dplyr::arrange(.data$action_type) %>%
         dplyr::pull("action_type")
@@ -254,7 +254,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     LEAGUES <- "mls"
 
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
         dplyr::pull(player_id)
@@ -270,7 +270,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     LEAGUES <- c("mls", "uslc")
 
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
         dplyr::pull("player_id")
@@ -352,7 +352,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     IDS <- "NWMWlBK5lz"
 
     .obj <- asa_client$get_goalkeeper_goals_added(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(.data$team_id) %>%
         nrow()
 
@@ -366,7 +366,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     IDS <- c("a2lqRX2Mr0", "9Yqdwg85vJ")
 
     .obj <- asa_client$get_goalkeeper_goals_added(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -380,7 +380,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     NAMES <- "Red Bulls"
 
     .obj <- asa_client$get_goalkeeper_goals_added(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -394,7 +394,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     NAMES <- c("Chicago", "Seattle")
 
     .obj <- asa_client$get_goalkeeper_goals_added(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -424,7 +424,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     # Single action type -------------------------------------------------
     .exp <- "Shotstopping"
     .obj <- asa_client$get_goalkeeper_goals_added(action_type = .exp) %>%
-        tidyr::unnest(.data$data) %>%
+        tidyr::unnest(data) %>%
         dplyr::distinct(.data$action_type) %>%
         dplyr::arrange(.data$action_type) %>%
         dplyr::pull("action_type")
@@ -434,7 +434,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     # Multiple action types ----------------------------------------------
     .exp <- c("Shotstopping", "Sweeping")
     .obj <- asa_client$get_goalkeeper_goals_added(action_type = .exp) %>%
-        tidyr::unnest(.data$data) %>%
+        tidyr::unnest(data) %>%
         dplyr::distinct(.data$action_type) %>%
         dplyr::arrange(.data$action_type) %>%
         dplyr::pull("action_type")
@@ -471,7 +471,7 @@ test_that("Querying team-level goals added (g+) values works properly", {
     LEAGUES <- "mls"
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
         dplyr::pull(team_id)
@@ -487,7 +487,7 @@ test_that("Querying team-level goals added (g+) values works properly", {
     LEAGUES <- c("mls", "uslc")
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
         dplyr::pull("team_id")
@@ -506,7 +506,7 @@ test_that("Querying team-level goals added (g+) values works properly", {
     IDS <- "NWMWlBK5lz"
 
     .obj <- asa_client$get_team_goals_added(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(.data$team_id) %>%
         nrow()
 
@@ -520,7 +520,7 @@ test_that("Querying team-level goals added (g+) values works properly", {
     IDS <- c("a2lqRX2Mr0", "9Yqdwg85vJ")
 
     .obj <- asa_client$get_team_goals_added(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -534,7 +534,7 @@ test_that("Querying team-level goals added (g+) values works properly", {
     NAMES <- "Red Bulls"
 
     .obj <- asa_client$get_team_goals_added(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -548,7 +548,7 @@ test_that("Querying team-level goals added (g+) values works properly", {
     NAMES <- c("Chicago", "Seattle")
 
     .obj <- asa_client$get_team_goals_added(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -565,7 +565,7 @@ test_that("Querying team-level goals added (g+) values works properly", {
     # Single action type -------------------------------------------------
     .exp <- "Passing"
     .obj <- asa_client$get_team_goals_added(action_type = .exp) %>%
-        tidyr::unnest(.data$data) %>%
+        tidyr::unnest(data) %>%
         dplyr::distinct(.data$action_type) %>%
         dplyr::arrange(.data$action_type) %>%
         dplyr::pull(action_type)
@@ -575,7 +575,7 @@ test_that("Querying team-level goals added (g+) values works properly", {
     # Multiple action types ----------------------------------------------
     .exp <- c("Passing", "Shooting")
     .obj <- asa_client$get_team_goals_added(action_type = .exp) %>%
-        tidyr::unnest(.data$data) %>%
+        tidyr::unnest(data) %>%
         dplyr::distinct(.data$action_type) %>%
         dplyr::arrange(.data$action_type) %>%
         dplyr::pull(action_type)

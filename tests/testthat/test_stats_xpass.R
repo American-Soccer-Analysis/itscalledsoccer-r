@@ -18,7 +18,7 @@ test_that("Querying player-level xPass values works properly", {
     LEAGUES <- "mls"
 
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
         dplyr::pull("player_id")
@@ -34,7 +34,7 @@ test_that("Querying player-level xPass values works properly", {
     LEAGUES <- c("mls", "uslc")
 
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
         dplyr::pull("player_id")
@@ -124,7 +124,7 @@ test_that("Querying player-level xPass values works properly", {
     IDS <- "NWMWlBK5lz"
 
     .obj <- asa_client$get_player_xpass(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(.data$team_id) %>%
         nrow()
 
@@ -138,7 +138,7 @@ test_that("Querying player-level xPass values works properly", {
     IDS <- c("a2lqRX2Mr0", "9Yqdwg85vJ")
 
     .obj <- asa_client$get_player_xpass(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -152,7 +152,7 @@ test_that("Querying player-level xPass values works properly", {
     NAMES <- "Red Bulls"
 
     .obj <- asa_client$get_player_xpass(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -166,7 +166,7 @@ test_that("Querying player-level xPass values works properly", {
     NAMES <- c("Chicago", "Seattle")
 
     .obj <- asa_client$get_player_xpass(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -234,7 +234,7 @@ test_that("Querying team-level xPass values works properly", {
     LEAGUES <- "mls"
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
         dplyr::pull("team_id")
@@ -250,7 +250,7 @@ test_that("Querying team-level xPass values works properly", {
     LEAGUES <- c("mls", "uslc")
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
+        tidyr::unnest(competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
         dplyr::pull("team_id")
@@ -269,7 +269,7 @@ test_that("Querying team-level xPass values works properly", {
     IDS <- "NWMWlBK5lz"
 
     .obj <- asa_client$get_team_xpass(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(.data$team_id) %>%
         nrow()
 
@@ -283,7 +283,7 @@ test_that("Querying team-level xPass values works properly", {
     IDS <- c("a2lqRX2Mr0", "9Yqdwg85vJ")
 
     .obj <- asa_client$get_team_xpass(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -297,7 +297,7 @@ test_that("Querying team-level xPass values works properly", {
     NAMES <- "Red Bulls"
 
     .obj <- asa_client$get_team_xpass(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
@@ -311,7 +311,7 @@ test_that("Querying team-level xPass values works properly", {
     NAMES <- c("Chicago", "Seattle")
 
     .obj <- asa_client$get_team_xpass(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 

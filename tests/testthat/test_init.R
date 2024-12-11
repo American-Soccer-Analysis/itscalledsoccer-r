@@ -18,7 +18,7 @@ test_that("AmericanSoccerAnalysis class initializes successfully", {
 
     for (type in ENTITY_TYPES) {
         .obj <- asa_client[[type]] %>%
-            tidyr::unnest(.data$competitions) %>%
+            tidyr::unnest(competitions) %>%
             dplyr::distinct(competitions) %>%
             nrow()
 
