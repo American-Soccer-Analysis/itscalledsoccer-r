@@ -43,7 +43,7 @@
     .check_clear_cache(self)
 
     entity_filtered <- self[[entity]] %>%
-        tidyr::unnest(.data$competitions)
+        tidyr::unnest("competitions")
 
     if (!missing(leagues)) {
         entity_filtered <- entity_filtered %>%

@@ -569,7 +569,7 @@ test_that("Querying games works properly", {
     LEAGUES <- "mls"
 
     .obj <- asa_client$get_games(leagues = LEAGUES) %>%
-        dplyr::select(.data$game_id, .data$home_team_id, .data$away_team_id) %>%
+        dplyr::select("game_id", "home_team_id", "away_team_id") %>%
         tidyr::pivot_longer(cols = dplyr::ends_with("team_id"), values_to = "team_id") %>%
         dplyr::distinct(.data$team_id) %>%
         nrow()
