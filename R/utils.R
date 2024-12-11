@@ -39,7 +39,7 @@
 
 .check_clear_cache <- function(self) {
     .latest_update_timestamp <- .get_latest_update_timestamp(self)
-    if (.latest_update_timestamp > self$latest_update_timestamp) {
+    if (is.null(self$latest_update_timestamp) || .latest_update_timestamp > self$latest_update_timestamp) {
         cli::cat_line("  INFO: New data found. Clearing session cache and refreshing `AmericanSoccerAnalysis` class.", col = "yellow")
         httpcache::clearCache()
         .initialize_entities(self)
