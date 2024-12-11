@@ -21,7 +21,7 @@ test_that("Querying player-level xPass values works properly", {
         tidyr::unnest(.data$competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
-        dplyr::pull(.data$player_id)
+        dplyr::pull("player_id")
 
     .obj <- asa_client$get_player_xpass(leagues = LEAGUES) %>%
         dplyr::mutate(obj = .data$player_id %in% .exp) %>%
@@ -37,7 +37,7 @@ test_that("Querying player-level xPass values works properly", {
         tidyr::unnest(.data$competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
-        dplyr::pull(.data$player_id)
+        dplyr::pull("player_id")
 
     .obj <- asa_client$get_player_xpass(leagues = LEAGUES) %>%
         dplyr::mutate(obj = .data$player_id %in% .exp) %>%
@@ -49,7 +49,7 @@ test_that("Querying player-level xPass values works properly", {
     # Minimum minutes ----------------------------------------------------
     .exp <- 1000
     .obj <- asa_client$get_player_xpass(minimum_minutes = .exp) %>%
-        dplyr::pull(.data$minutes_played) %>%
+        dplyr::pull(minutes_played) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -57,7 +57,7 @@ test_that("Querying player-level xPass values works properly", {
     # Minimum passes -----------------------------------------------------
     .exp <- 1000
     .obj <- asa_client$get_player_xpass(minimum_passes = .exp) %>%
-        dplyr::pull(.data$attempted_passes) %>%
+        dplyr::pull(attempted_passes) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -199,7 +199,7 @@ test_that("Querying player-level xPass values works properly", {
     .obj <- asa_client$get_player_xpass(general_position = .exp) %>%
         dplyr::distinct(.data$general_position) %>%
         dplyr::arrange(.data$general_position) %>%
-        dplyr::pull(.data$general_position)
+        dplyr::pull("general_position")
 
     expect_equal(.obj, .exp)
 
@@ -208,7 +208,7 @@ test_that("Querying player-level xPass values works properly", {
     .obj <- asa_client$get_player_xpass(general_position = .exp) %>%
         dplyr::distinct(.data$general_position) %>%
         dplyr::arrange(.data$general_position) %>%
-        dplyr::pull(.data$general_position)
+        dplyr::pull("general_position")
 
     expect_equal(.obj, .exp)
 
@@ -237,7 +237,7 @@ test_that("Querying team-level xPass values works properly", {
         tidyr::unnest(.data$competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
-        dplyr::pull(.data$team_id)
+        dplyr::pull("team_id")
 
     .obj <- asa_client$get_team_xpass(leagues = LEAGUES) %>%
         dplyr::mutate(obj = .data$team_id %in% .exp) %>%
@@ -253,7 +253,7 @@ test_that("Querying team-level xPass values works properly", {
         tidyr::unnest(.data$competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
-        dplyr::pull(.data$team_id)
+        dplyr::pull("team_id")
 
     .obj <- asa_client$get_team_xpass(leagues = LEAGUES) %>%
         dplyr::mutate(obj = .data$team_id %in% .exp) %>%

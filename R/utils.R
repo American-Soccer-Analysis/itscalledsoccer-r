@@ -58,7 +58,7 @@
     }
 
     latest_update_timestamp <- data.table::rbindlist(games, fill = TRUE) %>%
-        dplyr::pull(.data$last_updated_utc) %>%
+        dplyr::pull("last_updated_utc") %>%
         max(na.rm = TRUE) %>%
         as.POSIXct(format="%Y-%m-%d %H:%M:%S", tz="UTC")
 

@@ -21,7 +21,7 @@ test_that("Querying player-level xG values works properly", {
         tidyr::unnest(.data$competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
-        dplyr::pull(.data$player_id)
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_player_xgoals(leagues = LEAGUES) %>%
         dplyr::mutate(obj = .data$player_id %in% .exp) %>%
@@ -37,7 +37,7 @@ test_that("Querying player-level xG values works properly", {
         tidyr::unnest(.data$competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
-        dplyr::pull(.data$player_id)
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_player_xgoals(leagues = LEAGUES) %>%
         dplyr::mutate(obj = .data$player_id %in% .exp) %>%
@@ -49,7 +49,7 @@ test_that("Querying player-level xG values works properly", {
     # Minimum minutes ----------------------------------------------------
     .exp <- 1000
     .obj <- asa_client$get_player_xgoals(minimum_minutes = .exp) %>%
-        dplyr::pull(.data$minutes_played) %>%
+        dplyr::pull(minutes_played) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -57,7 +57,7 @@ test_that("Querying player-level xG values works properly", {
     # Minimum shots ------------------------------------------------------
     .exp <- 100
     .obj <- asa_client$get_player_xgoals(minimum_shots = .exp) %>%
-        dplyr::pull(.data$shots) %>%
+        dplyr::pull(shots) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -65,7 +65,7 @@ test_that("Querying player-level xG values works properly", {
     # Minimum key_passes -------------------------------------------------
     .exp <- 100
     .obj <- asa_client$get_player_xgoals(minimum_key_passes = .exp) %>%
-        dplyr::pull(.data$key_passes) %>%
+        dplyr::pull(key_passes) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -207,7 +207,7 @@ test_that("Querying player-level xG values works properly", {
     .obj <- asa_client$get_player_xgoals(general_position = .exp) %>%
         dplyr::distinct(.data$general_position) %>%
         dplyr::arrange(.data$general_position) %>%
-        dplyr::pull(.data$general_position)
+        dplyr::pull(general_position)
 
     expect_equal(.obj, .exp)
 
@@ -216,7 +216,7 @@ test_that("Querying player-level xG values works properly", {
     .obj <- asa_client$get_player_xgoals(general_position = .exp) %>%
         dplyr::distinct(.data$general_position) %>%
         dplyr::arrange(.data$general_position) %>%
-        dplyr::pull(.data$general_position)
+        dplyr::pull(general_position)
 
     expect_equal(.obj, .exp)
 
@@ -245,7 +245,7 @@ test_that("Querying goalkeeper-level xG values works properly", {
         tidyr::unnest(.data$competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
-        dplyr::pull(.data$player_id)
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_goalkeeper_xgoals(leagues = LEAGUES) %>%
         dplyr::mutate(obj = .data$player_id %in% .exp) %>%
@@ -261,7 +261,7 @@ test_that("Querying goalkeeper-level xG values works properly", {
         tidyr::unnest(.data$competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
-        dplyr::pull(.data$player_id)
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_goalkeeper_xgoals(leagues = LEAGUES) %>%
         dplyr::mutate(obj = .data$player_id %in% .exp) %>%
@@ -273,7 +273,7 @@ test_that("Querying goalkeeper-level xG values works properly", {
     # Minimum minutes ----------------------------------------------------
     .exp <- 1000
     .obj <- asa_client$get_goalkeeper_xgoals(minimum_minutes = .exp) %>%
-        dplyr::pull(.data$minutes_played) %>%
+        dplyr::pull(minutes_played) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -281,7 +281,7 @@ test_that("Querying goalkeeper-level xG values works properly", {
     # Minimum shots faced ------------------------------------------------
     .exp <- 100
     .obj <- asa_client$get_goalkeeper_xgoals(minimum_shots_faced = .exp) %>%
-        dplyr::pull(.data$shots_faced) %>%
+        dplyr::pull(shots_faced) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -443,7 +443,7 @@ test_that("Querying team-level xG values works properly", {
         tidyr::unnest(.data$competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
-        dplyr::pull(.data$team_id)
+        dplyr::pull(team_id)
 
     .obj <- asa_client$get_team_xgoals(leagues = LEAGUES) %>%
         dplyr::mutate(obj = .data$team_id %in% .exp) %>%
@@ -459,7 +459,7 @@ test_that("Querying team-level xG values works properly", {
         tidyr::unnest(.data$competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
-        dplyr::pull(.data$team_id)
+        dplyr::pull(team_id)
 
     .obj <- asa_client$get_team_xgoals(leagues = LEAGUES) %>%
         dplyr::mutate(obj = .data$team_id %in% .exp) %>%

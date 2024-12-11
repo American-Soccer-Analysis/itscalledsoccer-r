@@ -60,7 +60,7 @@
     }
 
     entity_filtered <- entity_filtered %>%
-        dplyr::select(-.data$competitions) %>%
+        dplyr::select(-"competitions") %>%
         dplyr::distinct()
 
     return(entity_filtered)

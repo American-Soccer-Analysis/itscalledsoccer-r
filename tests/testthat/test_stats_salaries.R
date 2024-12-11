@@ -23,7 +23,7 @@ test_that("Querying player-level salary values works properly", {
         tidyr::unnest(.data$competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$player_id) %>%
-        dplyr::pull(.data$player_id)
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_player_salaries(leagues = LEAGUES) %>%
         dplyr::mutate(obj = .data$player_id %in% .exp) %>%
@@ -193,7 +193,7 @@ test_that("Querying team-level salary values works properly", {
         tidyr::unnest(.data$competitions) %>%
         dplyr::filter(.data$competitions %in% LEAGUES) %>%
         dplyr::distinct(.data$team_id) %>%
-        dplyr::pull(.data$team_id)
+        dplyr::pull(team_id)
 
     .obj <- asa_client$get_team_salaries(leagues = LEAGUES) %>%
         dplyr::filter(!is.na(team_id)) %>%
