@@ -19,12 +19,12 @@ test_that("Querying player-level goals added (g+) values works properly", {
 
     .exp <- asa_client$players %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(player_id) %>%
         dplyr::pull("player_id")
 
     .obj <- asa_client$get_player_goals_added(leagues = LEAGUES) %>%
-        dplyr::mutate(obj = .data$player_id %in% .exp) %>%
+        dplyr::mutate(obj = player_id %in% .exp) %>%
         dplyr::pull(obj) %>%
         mean(na.rm = TRUE)
 
@@ -35,12 +35,12 @@ test_that("Querying player-level goals added (g+) values works properly", {
 
     .exp <- asa_client$players %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(player_id) %>%
         dplyr::pull("player_id")
 
     .obj <- asa_client$get_player_goals_added(leagues = LEAGUES) %>%
-        dplyr::mutate(obj = .data$player_id %in% .exp) %>%
+        dplyr::mutate(obj = player_id %in% .exp) %>%
         dplyr::pull(obj) %>%
         mean(na.rm = TRUE)
 
@@ -61,11 +61,11 @@ test_that("Querying player-level goals added (g+) values works properly", {
     IDS <- "vzqo8xZQap"
 
     .obj <- asa_client$get_player_goals_added(player_ids = IDS) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(.data$player_id %in% IDS) %>%
+        dplyr::filter(player_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -74,11 +74,11 @@ test_that("Querying player-level goals added (g+) values works properly", {
     IDS <- c("vzqo8xZQap", "9vQ22BR7QK")
 
     .obj <- asa_client$get_player_goals_added(player_ids = IDS) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(.data$player_id %in% IDS) %>%
+        dplyr::filter(player_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -87,11 +87,11 @@ test_that("Querying player-level goals added (g+) values works properly", {
     NAMES <- "Dax McCarty"
 
     .obj <- asa_client$get_player_goals_added(player_names = NAMES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$player_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), player_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -100,11 +100,11 @@ test_that("Querying player-level goals added (g+) values works properly", {
     NAMES <- c("Dax McCarty", "Tiffany McCarty")
 
     .obj <- asa_client$get_player_goals_added(player_names = NAMES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$player_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), player_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -117,11 +117,11 @@ test_that("Querying player-level goals added (g+) values works properly", {
 
     .obj <- asa_client$get_player_goals_added(team_ids = IDS) %>%
         tidyr::unnest(team_id) %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -135,7 +135,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -149,7 +149,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -163,7 +163,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -190,8 +190,8 @@ test_that("Querying player-level goals added (g+) values works properly", {
     .exp <- "Passing"
     .obj <- asa_client$get_player_goals_added(action_type = .exp) %>%
         tidyr::unnest(data) %>%
-        dplyr::distinct(.data$action_type) %>%
-        dplyr::arrange(.data$action_type) %>%
+        dplyr::distinct(action_type) %>%
+        dplyr::arrange(action_type) %>%
         dplyr::pull("action_type")
 
     expect_equal(.obj, .exp)
@@ -200,8 +200,8 @@ test_that("Querying player-level goals added (g+) values works properly", {
     .exp <- c("Passing", "Shooting")
     .obj <- asa_client$get_player_goals_added(action_type = .exp) %>%
         tidyr::unnest(data) %>%
-        dplyr::distinct(.data$action_type) %>%
-        dplyr::arrange(.data$action_type) %>%
+        dplyr::distinct(action_type) %>%
+        dplyr::arrange(action_type) %>%
         dplyr::pull("action_type")
 
     expect_equal(.obj, .exp)
@@ -209,8 +209,8 @@ test_that("Querying player-level goals added (g+) values works properly", {
     # Single position ----------------------------------------------------
     .exp <- "AM"
     .obj <- asa_client$get_player_goals_added(general_position = .exp) %>%
-        dplyr::distinct(.data$general_position) %>%
-        dplyr::arrange(.data$general_position) %>%
+        dplyr::distinct(general_position) %>%
+        dplyr::arrange(general_position) %>%
         dplyr::pull("general_position")
 
     expect_equal(.obj, .exp)
@@ -218,8 +218,8 @@ test_that("Querying player-level goals added (g+) values works properly", {
     # Multiple positions -------------------------------------------------
     .exp <- c("AM", "DM")
     .obj <- asa_client$get_player_goals_added(general_position = .exp) %>%
-        dplyr::distinct(.data$general_position) %>%
-        dplyr::arrange(.data$general_position) %>%
+        dplyr::distinct(general_position) %>%
+        dplyr::arrange(general_position) %>%
         dplyr::pull("general_position")
 
     expect_equal(.obj, .exp)
@@ -255,12 +255,12 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
 
     .exp <- asa_client$players %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(player_id) %>%
         dplyr::pull(player_id)
 
     .obj <- asa_client$get_goalkeeper_goals_added(leagues = LEAGUES) %>%
-        dplyr::mutate(obj = .data$player_id %in% .exp) %>%
+        dplyr::mutate(obj = player_id %in% .exp) %>%
         dplyr::pull(obj) %>%
         mean(na.rm = TRUE)
 
@@ -271,12 +271,12 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
 
     .exp <- asa_client$players %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(player_id) %>%
         dplyr::pull("player_id")
 
     .obj <- asa_client$get_goalkeeper_goals_added(leagues = LEAGUES) %>%
-        dplyr::mutate(obj = .data$player_id %in% .exp) %>%
+        dplyr::mutate(obj = player_id %in% .exp) %>%
         dplyr::pull(obj) %>%
         mean(na.rm = TRUE)
 
@@ -297,11 +297,11 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     IDS <- "vzqoWbkqap"
 
     .obj <- asa_client$get_goalkeeper_goals_added(player_ids = IDS) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(.data$player_id %in% IDS) %>%
+        dplyr::filter(player_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -310,11 +310,11 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     IDS <- c("vzqoWbkqap", "gOMn6OlmMw")
 
     .obj <- asa_client$get_goalkeeper_goals_added(player_ids = IDS) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(.data$player_id %in% IDS) %>%
+        dplyr::filter(player_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -323,11 +323,11 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     NAMES <- "Luis Robles"
 
     .obj <- asa_client$get_goalkeeper_goals_added(player_names = NAMES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$player_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), player_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -336,11 +336,11 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     NAMES <- c("Luis Robles", "Ryan Meara")
 
     .obj <- asa_client$get_goalkeeper_goals_added(player_names = NAMES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$player_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), player_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -353,11 +353,11 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
 
     .obj <- asa_client$get_goalkeeper_goals_added(team_ids = IDS) %>%
         tidyr::unnest(team_id) %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -371,7 +371,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -385,7 +385,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -399,7 +399,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -425,8 +425,8 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     .exp <- "Shotstopping"
     .obj <- asa_client$get_goalkeeper_goals_added(action_type = .exp) %>%
         tidyr::unnest(data) %>%
-        dplyr::distinct(.data$action_type) %>%
-        dplyr::arrange(.data$action_type) %>%
+        dplyr::distinct(action_type) %>%
+        dplyr::arrange(action_type) %>%
         dplyr::pull("action_type")
 
     expect_equal(.obj, .exp)
@@ -435,8 +435,8 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     .exp <- c("Shotstopping", "Sweeping")
     .obj <- asa_client$get_goalkeeper_goals_added(action_type = .exp) %>%
         tidyr::unnest(data) %>%
-        dplyr::distinct(.data$action_type) %>%
-        dplyr::arrange(.data$action_type) %>%
+        dplyr::distinct(action_type) %>%
+        dplyr::arrange(action_type) %>%
         dplyr::pull("action_type")
 
     expect_equal(.obj, .exp)
@@ -472,12 +472,12 @@ test_that("Querying team-level goals added (g+) values works properly", {
 
     .exp <- asa_client$teams %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(team_id) %>%
         dplyr::pull(team_id)
 
     .obj <- asa_client$get_team_goals_added(leagues = LEAGUES) %>%
-        dplyr::mutate(obj = .data$team_id %in% .exp) %>%
+        dplyr::mutate(obj = team_id %in% .exp) %>%
         dplyr::pull(obj) %>%
         mean(na.rm = TRUE)
 
@@ -488,12 +488,12 @@ test_that("Querying team-level goals added (g+) values works properly", {
 
     .exp <- asa_client$teams %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(team_id) %>%
         dplyr::pull("team_id")
 
     .obj <- asa_client$get_team_goals_added(leagues = LEAGUES) %>%
-        dplyr::mutate(obj = .data$team_id %in% .exp) %>%
+        dplyr::mutate(obj = team_id %in% .exp) %>%
         dplyr::pull(obj) %>%
         mean(na.rm = TRUE)
 
@@ -507,11 +507,11 @@ test_that("Querying team-level goals added (g+) values works properly", {
 
     .obj <- asa_client$get_team_goals_added(team_ids = IDS) %>%
         tidyr::unnest(team_id) %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -525,7 +525,7 @@ test_that("Querying team-level goals added (g+) values works properly", {
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -539,7 +539,7 @@ test_that("Querying team-level goals added (g+) values works properly", {
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -553,7 +553,7 @@ test_that("Querying team-level goals added (g+) values works properly", {
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -566,8 +566,8 @@ test_that("Querying team-level goals added (g+) values works properly", {
     .exp <- "Passing"
     .obj <- asa_client$get_team_goals_added(action_type = .exp) %>%
         tidyr::unnest(data) %>%
-        dplyr::distinct(.data$action_type) %>%
-        dplyr::arrange(.data$action_type) %>%
+        dplyr::distinct(action_type) %>%
+        dplyr::arrange(action_type) %>%
         dplyr::pull(action_type)
 
     expect_equal(.obj, .exp)
@@ -576,8 +576,8 @@ test_that("Querying team-level goals added (g+) values works properly", {
     .exp <- c("Passing", "Shooting")
     .obj <- asa_client$get_team_goals_added(action_type = .exp) %>%
         tidyr::unnest(data) %>%
-        dplyr::distinct(.data$action_type) %>%
-        dplyr::arrange(.data$action_type) %>%
+        dplyr::distinct(action_type) %>%
+        dplyr::arrange(action_type) %>%
         dplyr::pull(action_type)
 
     expect_equal(.obj, .exp)

@@ -19,7 +19,7 @@ test_that("Filtering players works properly", {
     .obj <- asa_client$get_players(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$players %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -30,8 +30,8 @@ test_that("Filtering players works properly", {
     .obj <- asa_client$get_players(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$players %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -43,7 +43,7 @@ test_that("Filtering players works properly", {
     IDS <- "vzqo8xZQap"
 
     .obj <- asa_client$get_players(ids = IDS) %>% nrow()
-    .exp <- asa_client$players %>% dplyr::filter(.data$player_id %in% IDS) %>% nrow()
+    .exp <- asa_client$players %>% dplyr::filter(player_id %in% IDS) %>% nrow()
 
     expect_equal(.obj, .exp)
 
@@ -51,7 +51,7 @@ test_that("Filtering players works properly", {
     IDS <- c("vzqo8xZQap", "9vQ22BR7QK")
 
     .obj <- asa_client$get_players(ids = IDS) %>% nrow()
-    .exp <- asa_client$players %>% dplyr::filter(.data$player_id %in% IDS) %>% nrow()
+    .exp <- asa_client$players %>% dplyr::filter(player_id %in% IDS) %>% nrow()
 
     expect_equal(.obj, .exp)
 
@@ -60,7 +60,7 @@ test_that("Filtering players works properly", {
 
     .obj <- asa_client$get_players(names = NAMES) %>% nrow()
     .exp <- asa_client$players %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$player_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), player_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -70,7 +70,7 @@ test_that("Filtering players works properly", {
 
     .obj <- asa_client$get_players(names = NAMES) %>% nrow()
     .exp <- asa_client$players %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$player_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), player_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -82,9 +82,9 @@ test_that("Filtering players works properly", {
     .obj <- asa_client$get_players(leagues = LEAGUES, ids = IDS) %>% nrow()
     .exp <- asa_client$players %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES,
-                      .data$player_id %in% IDS) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::filter(competitions %in% LEAGUES,
+                      player_id %in% IDS) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -96,9 +96,9 @@ test_that("Filtering players works properly", {
     .obj <- asa_client$get_players(leagues = LEAGUES, names = NAMES) %>% nrow()
     .exp <- asa_client$players %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES,
-                      grepl(paste0(NAMES, collapse = "|"), .data$player_name)) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::filter(competitions %in% LEAGUES,
+                      grepl(paste0(NAMES, collapse = "|"), player_name)) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -126,7 +126,7 @@ test_that("Filtering teams works properly", {
     .obj <- asa_client$get_teams(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$teams %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -137,8 +137,8 @@ test_that("Filtering teams works properly", {
     .obj <- asa_client$get_teams(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$teams %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -151,7 +151,7 @@ test_that("Filtering teams works properly", {
 
     .obj <- asa_client$get_teams(ids = IDS) %>% nrow()
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -161,7 +161,7 @@ test_that("Filtering teams works properly", {
 
     .obj <- asa_client$get_teams(ids = IDS) %>% nrow()
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -171,7 +171,7 @@ test_that("Filtering teams works properly", {
 
     .obj <- asa_client$get_teams(names = NAMES) %>% nrow()
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -181,7 +181,7 @@ test_that("Filtering teams works properly", {
 
     .obj <- asa_client$get_teams(names = NAMES) %>% nrow()
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -193,9 +193,9 @@ test_that("Filtering teams works properly", {
     .obj <- asa_client$get_teams(leagues = LEAGUES, ids = IDS) %>% nrow()
     .exp <- asa_client$teams %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES,
-                      .data$team_id %in% IDS) %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::filter(competitions %in% LEAGUES,
+                      team_id %in% IDS) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -207,9 +207,9 @@ test_that("Filtering teams works properly", {
     .obj <- asa_client$get_teams(leagues = LEAGUES, names = NAMES) %>% nrow()
     .exp <- asa_client$teams %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES,
-                      grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::filter(competitions %in% LEAGUES,
+                      grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -237,7 +237,7 @@ test_that("Filtering stadia works properly", {
     .obj <- asa_client$get_stadia(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$stadia %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -248,8 +248,8 @@ test_that("Filtering stadia works properly", {
     .obj <- asa_client$get_stadia(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$stadia %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$stadium_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(stadium_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -262,7 +262,7 @@ test_that("Filtering stadia works properly", {
 
     .obj <- asa_client$get_stadia(ids = IDS) %>% nrow()
     .exp <- asa_client$stadia %>%
-        dplyr::filter(.data$stadium_id %in% IDS) %>%
+        dplyr::filter(stadium_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -272,7 +272,7 @@ test_that("Filtering stadia works properly", {
 
     .obj <- asa_client$get_stadia(ids = IDS) %>% nrow()
     .exp <- asa_client$stadia %>%
-        dplyr::filter(.data$stadium_id %in% IDS) %>%
+        dplyr::filter(stadium_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -282,7 +282,7 @@ test_that("Filtering stadia works properly", {
 
     .obj <- asa_client$get_stadia(names = NAMES) %>% nrow()
     .exp <- asa_client$stadia %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$stadium_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), stadium_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -292,7 +292,7 @@ test_that("Filtering stadia works properly", {
 
     .obj <- asa_client$get_stadia(names = NAMES) %>% nrow()
     .exp <- asa_client$stadia %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$stadium_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), stadium_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -304,9 +304,9 @@ test_that("Filtering stadia works properly", {
     .obj <- asa_client$get_stadia(leagues = LEAGUES, ids = IDS) %>% nrow()
     .exp <- asa_client$stadia %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES,
-                      .data$stadium_id %in% IDS) %>%
-        dplyr::distinct(.data$stadium_id) %>%
+        dplyr::filter(competitions %in% LEAGUES,
+                      stadium_id %in% IDS) %>%
+        dplyr::distinct(stadium_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -318,9 +318,9 @@ test_that("Filtering stadia works properly", {
     .obj <- asa_client$get_stadia(leagues = LEAGUES, names = NAMES) %>% nrow()
     .exp <- asa_client$stadia %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES,
-                      grepl(paste0(NAMES, collapse = "|"), .data$stadium_name)) %>%
-        dplyr::distinct(.data$stadium_id) %>%
+        dplyr::filter(competitions %in% LEAGUES,
+                      grepl(paste0(NAMES, collapse = "|"), stadium_name)) %>%
+        dplyr::distinct(stadium_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -348,7 +348,7 @@ test_that("Filtering managers works properly", {
     .obj <- asa_client$get_managers(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$managers %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -359,8 +359,8 @@ test_that("Filtering managers works properly", {
     .obj <- asa_client$get_managers(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$managers %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$manager_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(manager_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -373,7 +373,7 @@ test_that("Filtering managers works properly", {
 
     .obj <- asa_client$get_managers(ids = IDS) %>% nrow()
     .exp <- asa_client$managers %>%
-        dplyr::filter(.data$manager_id %in% IDS) %>%
+        dplyr::filter(manager_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -383,7 +383,7 @@ test_that("Filtering managers works properly", {
 
     .obj <- asa_client$get_managers(ids = IDS) %>% nrow()
     .exp <- asa_client$managers %>%
-        dplyr::filter(.data$manager_id %in% IDS) %>%
+        dplyr::filter(manager_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -393,7 +393,7 @@ test_that("Filtering managers works properly", {
 
     .obj <- asa_client$get_managers(names = NAMES) %>% nrow()
     .exp <- asa_client$managers %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$manager_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), manager_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -403,7 +403,7 @@ test_that("Filtering managers works properly", {
 
     .obj <- asa_client$get_managers(names = NAMES) %>% nrow()
     .exp <- asa_client$managers %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$manager_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), manager_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -415,9 +415,9 @@ test_that("Filtering managers works properly", {
     .obj <- asa_client$get_managers(leagues = LEAGUES, ids = IDS) %>% nrow()
     .exp <- asa_client$managers %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES,
-                      .data$manager_id %in% IDS) %>%
-        dplyr::distinct(.data$manager_id) %>%
+        dplyr::filter(competitions %in% LEAGUES,
+                      manager_id %in% IDS) %>%
+        dplyr::distinct(manager_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -429,9 +429,9 @@ test_that("Filtering managers works properly", {
     .obj <- asa_client$get_managers(leagues = LEAGUES, names = NAMES) %>% nrow()
     .exp <- asa_client$managers %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES,
-                      grepl(paste0(NAMES, collapse = "|"), .data$manager_name)) %>%
-        dplyr::distinct(.data$manager_id) %>%
+        dplyr::filter(competitions %in% LEAGUES,
+                      grepl(paste0(NAMES, collapse = "|"), manager_name)) %>%
+        dplyr::distinct(manager_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -459,7 +459,7 @@ test_that("Filtering referees works properly", {
     .obj <- asa_client$get_referees(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$referees %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -470,8 +470,8 @@ test_that("Filtering referees works properly", {
     .obj <- asa_client$get_referees(leagues = LEAGUES) %>% nrow()
     .exp <- asa_client$referees %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$referee_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(referee_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -484,7 +484,7 @@ test_that("Filtering referees works properly", {
 
     .obj <- asa_client$get_referees(ids = IDS) %>% nrow()
     .exp <- asa_client$referees %>%
-        dplyr::filter(.data$referee_id %in% IDS) %>%
+        dplyr::filter(referee_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -494,7 +494,7 @@ test_that("Filtering referees works properly", {
 
     .obj <- asa_client$get_referees(ids = IDS) %>% nrow()
     .exp <- asa_client$referees %>%
-        dplyr::filter(.data$referee_id %in% IDS) %>%
+        dplyr::filter(referee_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -504,7 +504,7 @@ test_that("Filtering referees works properly", {
 
     .obj <- asa_client$get_referees(names = NAMES) %>% nrow()
     .exp <- asa_client$referees %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$referee_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), referee_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -514,7 +514,7 @@ test_that("Filtering referees works properly", {
 
     .obj <- asa_client$get_referees(names = NAMES) %>% nrow()
     .exp <- asa_client$referees %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$referee_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), referee_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -526,9 +526,9 @@ test_that("Filtering referees works properly", {
     .obj <- asa_client$get_referees(leagues = LEAGUES, ids = IDS) %>% nrow()
     .exp <- asa_client$referees %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES,
-                      .data$referee_id %in% IDS) %>%
-        dplyr::distinct(.data$referee_id) %>%
+        dplyr::filter(competitions %in% LEAGUES,
+                      referee_id %in% IDS) %>%
+        dplyr::distinct(referee_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -540,9 +540,9 @@ test_that("Filtering referees works properly", {
     .obj <- asa_client$get_referees(leagues = LEAGUES, names = NAMES) %>% nrow()
     .exp <- asa_client$referees %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES,
-                      grepl(paste0(NAMES, collapse = "|"), .data$referee_name)) %>%
-        dplyr::distinct(.data$referee_id) %>%
+        dplyr::filter(competitions %in% LEAGUES,
+                      grepl(paste0(NAMES, collapse = "|"), referee_name)) %>%
+        dplyr::distinct(referee_id) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -571,13 +571,13 @@ test_that("Querying games works properly", {
     .obj <- asa_client$get_games(leagues = LEAGUES) %>%
         dplyr::select("game_id", "home_team_id", "away_team_id") %>%
         tidyr::pivot_longer(cols = dplyr::ends_with("team_id"), values_to = "team_id") %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     expect_lte(.obj, .exp)
@@ -588,13 +588,13 @@ test_that("Querying games works properly", {
     .obj <- asa_client$get_games(leagues = LEAGUES) %>%
         dplyr::select("game_id", "home_team_id", "away_team_id") %>%
         tidyr::pivot_longer(cols = dplyr::ends_with("team_id"), values_to = "team_id") %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
         tidyr::unnest(competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     expect_lte(.obj, .exp)
@@ -619,7 +619,7 @@ test_that("Querying games works properly", {
 
     .obj <- asa_client$get_games(team_ids = IDS) %>% nrow()
     .exp <- asa_client$get_games(team_ids = IDS) %>%
-        dplyr::filter(.data$home_team_id %in% IDS | .data$away_team_id %in% IDS) %>%
+        dplyr::filter(home_team_id %in% IDS | away_team_id %in% IDS) %>%
         nrow()
 
     expect_gt(.obj, 0)
@@ -630,7 +630,7 @@ test_that("Querying games works properly", {
 
     .obj <- asa_client$get_games(team_ids = IDS) %>% nrow()
     .exp <- asa_client$get_games(team_ids = IDS) %>%
-        dplyr::filter(.data$home_team_id %in% IDS | .data$away_team_id %in% IDS) %>%
+        dplyr::filter(home_team_id %in% IDS | away_team_id %in% IDS) %>%
         nrow()
 
     expect_gt(.obj, 0)
@@ -641,8 +641,8 @@ test_that("Querying games works properly", {
 
     .obj <- asa_client$get_games(team_names = NAMES) %>% nrow()
     .exp <- asa_client$get_games(team_names = NAMES) %>%
-        dplyr::filter(.data$home_team_id %in% .convert_names_to_ids(asa_client$teams, NAMES) |
-                          .data$away_team_id %in% .convert_names_to_ids(asa_client$teams, NAMES)) %>%
+        dplyr::filter(home_team_id %in% .convert_names_to_ids(asa_client$teams, NAMES) |
+                          away_team_id %in% .convert_names_to_ids(asa_client$teams, NAMES)) %>%
         nrow()
 
     expect_gt(.obj, 0)
@@ -653,8 +653,8 @@ test_that("Querying games works properly", {
 
     .obj <- asa_client$get_games(team_names = NAMES) %>% nrow()
     .exp <- asa_client$get_games(team_names = NAMES) %>%
-        dplyr::filter(.data$home_team_id %in% .convert_names_to_ids(asa_client$teams, NAMES) |
-                          .data$away_team_id %in% .convert_names_to_ids(asa_client$teams, NAMES)) %>%
+        dplyr::filter(home_team_id %in% .convert_names_to_ids(asa_client$teams, NAMES) |
+                          away_team_id %in% .convert_names_to_ids(asa_client$teams, NAMES)) %>%
         nrow()
 
     expect_gt(.obj, 0)
@@ -665,7 +665,7 @@ test_that("Querying games works properly", {
 
     .obj <- asa_client$get_games(seasons = SEASONS) %>% nrow()
     .exp <- asa_client$get_games(seasons = SEASONS) %>%
-        dplyr::filter(.data$season_name %in% SEASONS) %>%
+        dplyr::filter(season_name %in% SEASONS) %>%
         nrow()
 
     expect_gt(.obj, 0)
@@ -676,7 +676,7 @@ test_that("Querying games works properly", {
 
     .obj <- asa_client$get_games(seasons = SEASONS) %>% nrow()
     .exp <- asa_client$get_games(seasons = SEASONS) %>%
-        dplyr::filter(.data$season_name %in% SEASONS) %>%
+        dplyr::filter(season_name %in% SEASONS) %>%
         nrow()
 
     expect_gt(.obj, 0)
