@@ -21,7 +21,7 @@ test_that("Querying player-level xPass values works properly", {
         tidyr::unnest(competitions) %>%
         dplyr::filter(competitions %in% LEAGUES) %>%
         dplyr::distinct(player_id) %>%
-        dplyr::pull("player_id")
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_player_xpass(leagues = LEAGUES) %>%
         dplyr::mutate(obj = player_id %in% .exp) %>%
@@ -37,7 +37,7 @@ test_that("Querying player-level xPass values works properly", {
         tidyr::unnest(competitions) %>%
         dplyr::filter(competitions %in% LEAGUES) %>%
         dplyr::distinct(player_id) %>%
-        dplyr::pull("player_id")
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_player_xpass(leagues = LEAGUES) %>%
         dplyr::mutate(obj = player_id %in% .exp) %>%
@@ -199,7 +199,7 @@ test_that("Querying player-level xPass values works properly", {
     .obj <- asa_client$get_player_xpass(general_position = .exp) %>%
         dplyr::distinct(general_position) %>%
         dplyr::arrange(general_position) %>%
-        dplyr::pull("general_position")
+        dplyr::pull(general_position)
 
     expect_equal(.obj, .exp)
 
@@ -208,7 +208,7 @@ test_that("Querying player-level xPass values works properly", {
     .obj <- asa_client$get_player_xpass(general_position = .exp) %>%
         dplyr::distinct(general_position) %>%
         dplyr::arrange(general_position) %>%
-        dplyr::pull("general_position")
+        dplyr::pull(general_position)
 
     expect_equal(.obj, .exp)
 
@@ -237,7 +237,7 @@ test_that("Querying team-level xPass values works properly", {
         tidyr::unnest(competitions) %>%
         dplyr::filter(competitions %in% LEAGUES) %>%
         dplyr::distinct(team_id) %>%
-        dplyr::pull("team_id")
+        dplyr::pull(team_id)
 
     .obj <- asa_client$get_team_xpass(leagues = LEAGUES) %>%
         dplyr::mutate(obj = team_id %in% .exp) %>%
@@ -253,7 +253,7 @@ test_that("Querying team-level xPass values works properly", {
         tidyr::unnest(competitions) %>%
         dplyr::filter(competitions %in% LEAGUES) %>%
         dplyr::distinct(team_id) %>%
-        dplyr::pull("team_id")
+        dplyr::pull(team_id)
 
     .obj <- asa_client$get_team_xpass(leagues = LEAGUES) %>%
         dplyr::mutate(obj = team_id %in% .exp) %>%

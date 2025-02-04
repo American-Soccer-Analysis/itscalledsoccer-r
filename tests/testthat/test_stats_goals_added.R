@@ -21,7 +21,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
         tidyr::unnest(competitions) %>%
         dplyr::filter(competitions %in% LEAGUES) %>%
         dplyr::distinct(player_id) %>%
-        dplyr::pull("player_id")
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_player_goals_added(leagues = LEAGUES) %>%
         dplyr::mutate(obj = player_id %in% .exp) %>%
@@ -37,7 +37,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
         tidyr::unnest(competitions) %>%
         dplyr::filter(competitions %in% LEAGUES) %>%
         dplyr::distinct(player_id) %>%
-        dplyr::pull("player_id")
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_player_goals_added(leagues = LEAGUES) %>%
         dplyr::mutate(obj = player_id %in% .exp) %>%
@@ -49,7 +49,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
     # Minimum minutes ----------------------------------------------------
     .exp <- 1000
     .obj <- asa_client$get_player_goals_added(minimum_minutes = .exp) %>%
-        dplyr::pull("minutes_played") %>%
+        dplyr::pull(minutes_played) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -192,7 +192,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
         tidyr::unnest(data) %>%
         dplyr::distinct(action_type) %>%
         dplyr::arrange(action_type) %>%
-        dplyr::pull("action_type")
+        dplyr::pull(action_type)
 
     expect_equal(.obj, .exp)
 
@@ -202,7 +202,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
         tidyr::unnest(data) %>%
         dplyr::distinct(action_type) %>%
         dplyr::arrange(action_type) %>%
-        dplyr::pull("action_type")
+        dplyr::pull(action_type)
 
     expect_equal(.obj, .exp)
 
@@ -211,7 +211,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
     .obj <- asa_client$get_player_goals_added(general_position = .exp) %>%
         dplyr::distinct(general_position) %>%
         dplyr::arrange(general_position) %>%
-        dplyr::pull("general_position")
+        dplyr::pull(general_position)
 
     expect_equal(.obj, .exp)
 
@@ -220,7 +220,7 @@ test_that("Querying player-level goals added (g+) values works properly", {
     .obj <- asa_client$get_player_goals_added(general_position = .exp) %>%
         dplyr::distinct(general_position) %>%
         dplyr::arrange(general_position) %>%
-        dplyr::pull("general_position")
+        dplyr::pull(general_position)
 
     expect_equal(.obj, .exp)
 
@@ -273,7 +273,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
         tidyr::unnest(competitions) %>%
         dplyr::filter(competitions %in% LEAGUES) %>%
         dplyr::distinct(player_id) %>%
-        dplyr::pull("player_id")
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_goalkeeper_goals_added(leagues = LEAGUES) %>%
         dplyr::mutate(obj = player_id %in% .exp) %>%
@@ -285,7 +285,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
     # Minimum minutes ----------------------------------------------------
     .exp <- 1000
     .obj <- asa_client$get_goalkeeper_goals_added(minimum_minutes = .exp) %>%
-        dplyr::pull("minutes_played") %>%
+        dplyr::pull(minutes_played) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -427,7 +427,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
         tidyr::unnest(data) %>%
         dplyr::distinct(action_type) %>%
         dplyr::arrange(action_type) %>%
-        dplyr::pull("action_type")
+        dplyr::pull(action_type)
 
     expect_equal(.obj, .exp)
 
@@ -437,7 +437,7 @@ test_that("Querying goalkeeper-level goals added (g+) values works properly", {
         tidyr::unnest(data) %>%
         dplyr::distinct(action_type) %>%
         dplyr::arrange(action_type) %>%
-        dplyr::pull("action_type")
+        dplyr::pull(action_type)
 
     expect_equal(.obj, .exp)
 
@@ -490,7 +490,7 @@ test_that("Querying team-level goals added (g+) values works properly", {
         tidyr::unnest(competitions) %>%
         dplyr::filter(competitions %in% LEAGUES) %>%
         dplyr::distinct(team_id) %>%
-        dplyr::pull("team_id")
+        dplyr::pull(team_id)
 
     .obj <- asa_client$get_team_goals_added(leagues = LEAGUES) %>%
         dplyr::mutate(obj = team_id %in% .exp) %>%
