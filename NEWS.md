@@ -1,5 +1,10 @@
 # itscalledsoccer (development version)
 
+### Code improvements 🔧
+
+- Replaced `{clisymbols}` and `{crayon}` dependencies with `{cli}`.
+- Resolved `{tidyselect}` deprecation warnings.
+
 # itscalledsoccer 0.3.0
 
 ### What's new ✨
