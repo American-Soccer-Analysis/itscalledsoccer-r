@@ -1,6 +1,6 @@
 Package: itscalledsoccer
 Title: American Soccer Analysis API Client
-Version: 0.3.0.9000
+Version: 0.3.1
 Authors@R: 
     c(
         person(
