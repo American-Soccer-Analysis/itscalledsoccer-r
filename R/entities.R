@@ -16,13 +16,14 @@
         if (verbose) cat(".")
     }
 
+    # can give player_name, etc.
+    col_arrange <- paste0(type, "_name")
     entity_all <- data.table::rbindlist(entity_all, fill = TRUE) %>%
-        dplyr::group_by(dplyr::across(c(-dplyr::matches("competition"), -dplyr::starts_with("season"), -dplyr::ends_with("position")))) %>%
-        dplyr::summarize(competitions = list(.data$competition)) %>%
-        dplyr::ungroup() %>%
-        dplyr::arrange(!!as.symbol(glue::glue("{type}_name")))
+        dplyr::group_by(dplyr::pick(c(-dplyr::matches("competition"), -dplyr::starts_with("season"), -dplyr::ends_with("position")))) %>%
+        dplyr::summarize(competitions = list(.data$competition), .groups = "drop") %>%
+        dplyr::arrange(.data[[col_arrange]])
 
-    if (verbose) cat(crayon::green(clisymbols::symbol$tick), "\n")
+    if (verbose) cli::cat_bullet(bullet = "tick", bullet_col = "green")
 
     return(entity_all)
 }
@@ -42,7 +43,7 @@
     .check_clear_cache(self)
 
     entity_filtered <- self[[entity]] %>%
-        tidyr::unnest(.data$competitions)
+        tidyr::unnest("competitions")
 
     if (!missing(leagues)) {
         entity_filtered <- entity_filtered %>%
@@ -59,7 +60,7 @@
     }
 
     entity_filtered <- entity_filtered %>%
-        dplyr::select(-.data$competitions) %>%
+        dplyr::select(-"competitions") %>%
         dplyr::distinct()
 
     return(entity_filtered)

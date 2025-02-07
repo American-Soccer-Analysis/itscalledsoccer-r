@@ -18,13 +18,13 @@ test_that("Querying player-level xG values works properly", {
     LEAGUES <- "mls"
 
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$player_id) %>%
-        dplyr::pull(.data$player_id)
+        tidyr::unnest(competitions) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(player_id) %>%
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_player_xgoals(leagues = LEAGUES) %>%
-        dplyr::mutate(obj = .data$player_id %in% .exp) %>%
+        dplyr::mutate(obj = player_id %in% .exp) %>%
         dplyr::pull(obj) %>%
         mean(na.rm = TRUE)
 
@@ -34,13 +34,13 @@ test_that("Querying player-level xG values works properly", {
     LEAGUES <- c("mls", "uslc")
 
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$player_id) %>%
-        dplyr::pull(.data$player_id)
+        tidyr::unnest(competitions) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(player_id) %>%
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_player_xgoals(leagues = LEAGUES) %>%
-        dplyr::mutate(obj = .data$player_id %in% .exp) %>%
+        dplyr::mutate(obj = player_id %in% .exp) %>%
         dplyr::pull(obj) %>%
         mean(na.rm = TRUE)
 
@@ -49,7 +49,7 @@ test_that("Querying player-level xG values works properly", {
     # Minimum minutes ----------------------------------------------------
     .exp <- 1000
     .obj <- asa_client$get_player_xgoals(minimum_minutes = .exp) %>%
-        dplyr::pull(.data$minutes_played) %>%
+        dplyr::pull(minutes_played) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -57,7 +57,7 @@ test_that("Querying player-level xG values works properly", {
     # Minimum shots ------------------------------------------------------
     .exp <- 100
     .obj <- asa_client$get_player_xgoals(minimum_shots = .exp) %>%
-        dplyr::pull(.data$shots) %>%
+        dplyr::pull(shots) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -65,7 +65,7 @@ test_that("Querying player-level xG values works properly", {
     # Minimum key_passes -------------------------------------------------
     .exp <- 100
     .obj <- asa_client$get_player_xgoals(minimum_key_passes = .exp) %>%
-        dplyr::pull(.data$key_passes) %>%
+        dplyr::pull(key_passes) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -77,11 +77,11 @@ test_that("Querying player-level xG values works properly", {
     IDS <- "vzqo8xZQap"
 
     .obj <- asa_client$get_player_xgoals(player_ids = IDS) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(.data$player_id %in% IDS) %>%
+        dplyr::filter(player_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -90,11 +90,11 @@ test_that("Querying player-level xG values works properly", {
     IDS <- c("vzqo8xZQap", "9vQ22BR7QK")
 
     .obj <- asa_client$get_player_xgoals(player_ids = IDS) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(.data$player_id %in% IDS) %>%
+        dplyr::filter(player_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -103,11 +103,11 @@ test_that("Querying player-level xG values works properly", {
     NAMES <- "Dax McCarty"
 
     .obj <- asa_client$get_player_xgoals(player_names = NAMES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$player_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), player_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -116,11 +116,11 @@ test_that("Querying player-level xG values works properly", {
     NAMES <- c("Dax McCarty", "Tiffany McCarty")
 
     .obj <- asa_client$get_player_xgoals(player_names = NAMES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$player_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), player_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -132,12 +132,12 @@ test_that("Querying player-level xG values works properly", {
     IDS <- "NWMWlBK5lz"
 
     .obj <- asa_client$get_player_xgoals(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
-        dplyr::distinct(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -146,12 +146,12 @@ test_that("Querying player-level xG values works properly", {
     IDS <- c("a2lqRX2Mr0", "9Yqdwg85vJ")
 
     .obj <- asa_client$get_player_xgoals(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -160,12 +160,12 @@ test_that("Querying player-level xG values works properly", {
     NAMES <- "Red Bulls"
 
     .obj <- asa_client$get_player_xgoals(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -174,12 +174,12 @@ test_that("Querying player-level xG values works properly", {
     NAMES <- c("Chicago", "Seattle")
 
     .obj <- asa_client$get_player_xgoals(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -205,18 +205,18 @@ test_that("Querying player-level xG values works properly", {
     # Single position ----------------------------------------------------
     .exp <- "AM"
     .obj <- asa_client$get_player_xgoals(general_position = .exp) %>%
-        dplyr::distinct(.data$general_position) %>%
-        dplyr::arrange(.data$general_position) %>%
-        dplyr::pull(.data$general_position)
+        dplyr::distinct(general_position) %>%
+        dplyr::arrange(general_position) %>%
+        dplyr::pull(general_position)
 
     expect_equal(.obj, .exp)
 
     # Multiple positions -------------------------------------------------
     .exp <- c("AM", "DM")
     .obj <- asa_client$get_player_xgoals(general_position = .exp) %>%
-        dplyr::distinct(.data$general_position) %>%
-        dplyr::arrange(.data$general_position) %>%
-        dplyr::pull(.data$general_position)
+        dplyr::distinct(general_position) %>%
+        dplyr::arrange(general_position) %>%
+        dplyr::pull(general_position)
 
     expect_equal(.obj, .exp)
 
@@ -242,13 +242,13 @@ test_that("Querying goalkeeper-level xG values works properly", {
     LEAGUES <- "mls"
 
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$player_id) %>%
-        dplyr::pull(.data$player_id)
+        tidyr::unnest(competitions) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(player_id) %>%
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_goalkeeper_xgoals(leagues = LEAGUES) %>%
-        dplyr::mutate(obj = .data$player_id %in% .exp) %>%
+        dplyr::mutate(obj = player_id %in% .exp) %>%
         dplyr::pull(obj) %>%
         mean(na.rm = TRUE)
 
@@ -258,13 +258,13 @@ test_that("Querying goalkeeper-level xG values works properly", {
     LEAGUES <- c("mls", "uslc")
 
     .exp <- asa_client$players %>%
-        tidyr::unnest(.data$competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$player_id) %>%
-        dplyr::pull(.data$player_id)
+        tidyr::unnest(competitions) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(player_id) %>%
+        dplyr::pull(player_id)
 
     .obj <- asa_client$get_goalkeeper_xgoals(leagues = LEAGUES) %>%
-        dplyr::mutate(obj = .data$player_id %in% .exp) %>%
+        dplyr::mutate(obj = player_id %in% .exp) %>%
         dplyr::pull(obj) %>%
         mean(na.rm = TRUE)
 
@@ -273,7 +273,7 @@ test_that("Querying goalkeeper-level xG values works properly", {
     # Minimum minutes ----------------------------------------------------
     .exp <- 1000
     .obj <- asa_client$get_goalkeeper_xgoals(minimum_minutes = .exp) %>%
-        dplyr::pull(.data$minutes_played) %>%
+        dplyr::pull(minutes_played) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -281,7 +281,7 @@ test_that("Querying goalkeeper-level xG values works properly", {
     # Minimum shots faced ------------------------------------------------
     .exp <- 100
     .obj <- asa_client$get_goalkeeper_xgoals(minimum_shots_faced = .exp) %>%
-        dplyr::pull(.data$shots_faced) %>%
+        dplyr::pull(shots_faced) %>%
         min()
 
     expect_gte(.obj, .exp)
@@ -293,11 +293,11 @@ test_that("Querying goalkeeper-level xG values works properly", {
     IDS <- "vzqoWbkqap"
 
     .obj <- asa_client$get_goalkeeper_xgoals(player_ids = IDS) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(.data$player_id %in% IDS) %>%
+        dplyr::filter(player_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -306,11 +306,11 @@ test_that("Querying goalkeeper-level xG values works properly", {
     IDS <- c("vzqoWbkqap", "gOMn6OlmMw")
 
     .obj <- asa_client$get_goalkeeper_xgoals(player_ids = IDS) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(.data$player_id %in% IDS) %>%
+        dplyr::filter(player_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -319,11 +319,11 @@ test_that("Querying goalkeeper-level xG values works properly", {
     NAMES <- "Luis Robles"
 
     .obj <- asa_client$get_goalkeeper_xgoals(player_names = NAMES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$player_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), player_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -332,11 +332,11 @@ test_that("Querying goalkeeper-level xG values works properly", {
     NAMES <- c("Luis Robles", "Ryan Meara")
 
     .obj <- asa_client$get_goalkeeper_xgoals(player_names = NAMES) %>%
-        dplyr::distinct(.data$player_id) %>%
+        dplyr::distinct(player_id) %>%
         nrow()
 
     .exp <- asa_client$players %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$player_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), player_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -348,12 +348,12 @@ test_that("Querying goalkeeper-level xG values works properly", {
     IDS <- "NWMWlBK5lz"
 
     .obj <- asa_client$get_goalkeeper_xgoals(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
-        dplyr::distinct(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -362,12 +362,12 @@ test_that("Querying goalkeeper-level xG values works properly", {
     IDS <- c("a2lqRX2Mr0", "9Yqdwg85vJ")
 
     .obj <- asa_client$get_goalkeeper_xgoals(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -376,12 +376,12 @@ test_that("Querying goalkeeper-level xG values works properly", {
     NAMES <- "Red Bulls"
 
     .obj <- asa_client$get_goalkeeper_xgoals(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -390,12 +390,12 @@ test_that("Querying goalkeeper-level xG values works properly", {
     NAMES <- c("Chicago", "Seattle")
 
     .obj <- asa_client$get_goalkeeper_xgoals(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -440,13 +440,13 @@ test_that("Querying team-level xG values works properly", {
     LEAGUES <- "mls"
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$team_id) %>%
-        dplyr::pull(.data$team_id)
+        tidyr::unnest(competitions) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(team_id) %>%
+        dplyr::pull(team_id)
 
     .obj <- asa_client$get_team_xgoals(leagues = LEAGUES) %>%
-        dplyr::mutate(obj = .data$team_id %in% .exp) %>%
+        dplyr::mutate(obj = team_id %in% .exp) %>%
         dplyr::pull(obj) %>%
         mean(na.rm = TRUE)
 
@@ -456,13 +456,13 @@ test_that("Querying team-level xG values works properly", {
     LEAGUES <- c("mls", "uslc")
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$team_id) %>%
-        dplyr::pull(.data$team_id)
+        tidyr::unnest(competitions) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(team_id) %>%
+        dplyr::pull(team_id)
 
     .obj <- asa_client$get_team_xgoals(leagues = LEAGUES) %>%
-        dplyr::mutate(obj = .data$team_id %in% .exp) %>%
+        dplyr::mutate(obj = team_id %in% .exp) %>%
         dplyr::pull(obj) %>%
         mean(na.rm = TRUE)
 
@@ -475,12 +475,12 @@ test_that("Querying team-level xG values works properly", {
     IDS <- "NWMWlBK5lz"
 
     .obj <- asa_client$get_team_xgoals(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
-        dplyr::distinct(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -489,12 +489,12 @@ test_that("Querying team-level xG values works properly", {
     IDS <- c("a2lqRX2Mr0", "9Yqdwg85vJ")
 
     .obj <- asa_client$get_team_xgoals(team_ids = IDS) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(.data$team_id %in% IDS) %>%
+        dplyr::filter(team_id %in% IDS) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -503,12 +503,12 @@ test_that("Querying team-level xG values works properly", {
     NAMES <- "Red Bulls"
 
     .obj <- asa_client$get_team_xgoals(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -517,12 +517,12 @@ test_that("Querying team-level xG values works properly", {
     NAMES <- c("Chicago", "Seattle")
 
     .obj <- asa_client$get_team_xgoals(team_names = NAMES) %>%
-        tidyr::unnest(.data$team_id) %>%
+        tidyr::unnest(team_id) %>%
         dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), .data$team_name)) %>%
+        dplyr::filter(grepl(paste0(NAMES, collapse = "|"), team_name)) %>%
         nrow()
 
     expect_equal(.obj, .exp)
@@ -570,15 +570,15 @@ test_that("Querying game-level xG values works properly", {
     LEAGUES <- "mls"
 
     .obj <- asa_client$get_game_xgoals(leagues = LEAGUES) %>%
-        dplyr::select(.data$game_id, .data$home_team_id, .data$away_team_id) %>%
+        dplyr::select(game_id, home_team_id, away_team_id) %>%
         tidyr::pivot_longer(cols = dplyr::ends_with("team_id"), values_to = "team_id") %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$team_id) %>%
+        tidyr::unnest(competitions) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     expect_lte(.obj, .exp)
@@ -587,15 +587,15 @@ test_that("Querying game-level xG values works properly", {
     LEAGUES <- c("mls", "uslc")
 
     .obj <- asa_client$get_game_xgoals(leagues = LEAGUES) %>%
-        dplyr::select(.data$game_id, .data$home_team_id, .data$away_team_id) %>%
+        dplyr::select(game_id, home_team_id, away_team_id) %>%
         tidyr::pivot_longer(cols = dplyr::ends_with("team_id"), values_to = "team_id") %>%
-        dplyr::distinct(.data$team_id) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     .exp <- asa_client$teams %>%
-        tidyr::unnest(.data$competitions) %>%
-        dplyr::filter(.data$competitions %in% LEAGUES) %>%
-        dplyr::distinct(.data$team_id) %>%
+        tidyr::unnest(competitions) %>%
+        dplyr::filter(competitions %in% LEAGUES) %>%
+        dplyr::distinct(team_id) %>%
         nrow()
 
     expect_lte(.obj, .exp)
