@@ -132,6 +132,11 @@
         while (nrow(tmp_response) == self$MAX_API_LIMIT) {
             query$offset <- offset
             tmp_response <- .single_request(self, url, query, uncached)
+            # if we get an empty list or data.frame we should probably break
+            if (length(tmp_response) == 0) {
+                break
+            }
+
             tmp_response <- .cast_lists_to_vectors(tmp_response)
 
             addtl_responses <- append(addtl_responses, list(tmp_response))
