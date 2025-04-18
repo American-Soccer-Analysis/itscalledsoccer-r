@@ -1,4 +1,4 @@
-# itscalledsoccer (development version)
+# itscalledsoccer 0.3.2
 
 # itscalledsoccer 0.3.2
 

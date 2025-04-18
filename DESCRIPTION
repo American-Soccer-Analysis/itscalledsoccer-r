@@ -1,6 +1,6 @@
 Package: itscalledsoccer
 Title: American Soccer Analysis API Client
-Version: 0.3.1.9000
+Version: 0.3.2
 Authors@R: c(
     person("Tyler", "Richardett", , "akeaswaran@me.com", role = c("aut", "cre")),
     person("American Soccer Analysis", , , "americansocceranalysis@gmail.com", role = "cph")
