@@ -1,20 +1,11 @@
 Package: itscalledsoccer
 Title: American Soccer Analysis API Client
-Version: 0.3.1.9000
-Authors@R: 
-    c(
-        person(
-            given = "Tyler",
-            family = "Richardett",
-            role = c("aut", "cre"),
-            email = "tyler.richardett@gmail.com"
-        ),
-        person(
-            given = "American Soccer Analysis",
-            role = "cph",
-            email = "americansocceranalysis@gmail.com"
-        )
-    )
+Version: 0.3.2
+Authors@R: c(
+    person("Tyler", "Richardett", , "tyler.richardett@gmail.com", role = c("aut", "cre")),
+    person("Akshay", "Easwaran", , "akeaswaran@me.com", role = c("aut")),
+    person("American Soccer Analysis", , , "americansocceranalysis@gmail.com", role = "cph")
+  )
 Description: Provides a wrapper around the same API <https://app.americansocceranalysis.com/api/v1/__docs__/>
     that powers the American Soccer Analysis app.
 License: MIT + file LICENSE
