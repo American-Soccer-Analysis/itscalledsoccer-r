@@ -10,6 +10,9 @@
 
 `itscalledsoccer` is a wrapper around the same API that powers the [American Soccer Analysis app](https://app.americansocceranalysis.com/). It enables R users to programmatically retrieve advanced analytics for their favorite players and teams, with coverage of the following competitions: 
 
+Data returned by this API is licensed under
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
 - Major League Soccer
 - National Women's Soccer League
 - USL Championship
